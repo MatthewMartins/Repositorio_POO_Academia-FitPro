@@ -1,6 +1,5 @@
 package ProjetoPOO.entidades;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;

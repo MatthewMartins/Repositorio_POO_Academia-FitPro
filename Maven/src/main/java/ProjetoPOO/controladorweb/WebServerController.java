@@ -1,4 +1,4 @@
-package ProjetoPOO.ui;
+package ProjetoPOO.controladorweb;
 
 import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.entidades.Avaliacao;
@@ -92,6 +92,7 @@ public class WebServerController {
 
         try {
             this.fachada.atualizarAvaliacao(avaliacao);
+            
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -104,6 +105,7 @@ public class WebServerController {
 
         try {
             this.fachada.removerAvaliacao(idAvaliacao);
+            
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }

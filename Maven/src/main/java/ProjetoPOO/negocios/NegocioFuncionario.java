@@ -1,7 +1,6 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Funcionario;
-
 import ProjetoPOO.persistencias.RepositorioFuncionario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

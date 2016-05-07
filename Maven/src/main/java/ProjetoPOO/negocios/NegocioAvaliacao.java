@@ -37,18 +37,18 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
     @Transactional(rollbackFor = AvaliacaoInexistenteException.class)
     @Override
     public void atualizarAvaliacao(Avaliacao avaliacao) throws AvaliacaoInexistenteException {
-        Avaliacao antigo = buscarIdAvaliacao(avaliacao.getIdAvaliacao());
-        antigo.setPeso(avaliacao.getPeso());
-        antigo.setAltura(avaliacao.getAltura());
-        antigo.setPeito(avaliacao.getPeito());
-        antigo.setBiceps(avaliacao.getBiceps());
-        antigo.setTriceps(avaliacao.getTriceps());
-        antigo.setOmbro(avaliacao.getOmbro());
-        antigo.setCosta(avaliacao.getCosta());
-        antigo.setCoxa(avaliacao.getCoxa());
-        antigo.setPanturrilha(avaliacao.getPanturrilha());
-        antigo.setQuadril(avaliacao.getQuadril());
-        repositorioAvaliacao.save(antigo);
+        Avaliacao antiga = buscarIdAvaliacao(avaliacao.getIdAvaliacao());
+        antiga.setPeso(avaliacao.getPeso());
+        antiga.setAltura(avaliacao.getAltura());
+        antiga.setPeito(avaliacao.getPeito());
+        antiga.setBiceps(avaliacao.getBiceps());
+        antiga.setTriceps(avaliacao.getTriceps());
+        antiga.setOmbro(avaliacao.getOmbro());
+        antiga.setCosta(avaliacao.getCosta());
+        antiga.setCoxa(avaliacao.getCoxa());
+        antiga.setPanturrilha(avaliacao.getPanturrilha());
+        antiga.setQuadril(avaliacao.getQuadril());
+        repositorioAvaliacao.save(antiga);
 
     }
 

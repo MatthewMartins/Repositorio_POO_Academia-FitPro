@@ -9,4 +9,5 @@ public interface RepositorioFuncionario extends CrudRepository<Funcionario, Long
     public Funcionario findByNumContrato(long numContrato);
     public List<Funcionario> findByNomeFunContaining(String nomeFun);
 
+    
 }

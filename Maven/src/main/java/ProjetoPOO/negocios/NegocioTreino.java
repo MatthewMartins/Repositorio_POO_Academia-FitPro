@@ -23,6 +23,7 @@ public class NegocioTreino implements InterfaceTreino {
         } catch (TreinoInexistenteException e) {
             repositorioTreino.save(treino);
         }
+
     }
 
     @Override

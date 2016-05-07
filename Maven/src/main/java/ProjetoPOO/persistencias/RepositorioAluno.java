@@ -1,4 +1,3 @@
-
 package ProjetoPOO.persistencias;
 
 import ProjetoPOO.entidades.Aluno;
