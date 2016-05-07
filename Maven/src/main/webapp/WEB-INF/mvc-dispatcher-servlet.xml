@@ -21,7 +21,6 @@ and open the template in the editor.
 	<context:component-scan base-package="ProjetoPOO.ui" />
 	<context:component-scan base-package="ProjetoPOO.negocios" />
 
-
 	<mvc:annotation-driven
 		content-negotiation-manager="contentManager">
 		<mvc:message-converters>
