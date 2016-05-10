@@ -22,6 +22,8 @@ public class Aluno {
     private List<Avaliacao> avaliacaoAlunos;
     //os relacionamentos MANY TO ONE, recebe tambem o comando: fetch = FetchType.EAGER ????
     
+    
+    //teste luiz github
     public Aluno() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
     }
