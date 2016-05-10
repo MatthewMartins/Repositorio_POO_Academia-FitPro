@@ -106,7 +106,7 @@ public class Aluno {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+    //fetch = FetchType.EAGER -> ele ja pre recarrega os elementos
     @OneToMany (mappedBy = "aluno", fetch = FetchType.EAGER)
     public List<Avaliacao> getAvaliacaoAlunos() {
         return avaliacaoAlunos;

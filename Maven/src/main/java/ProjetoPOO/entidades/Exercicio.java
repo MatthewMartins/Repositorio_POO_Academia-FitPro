@@ -1,6 +1,7 @@
 package ProjetoPOO.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -76,7 +77,7 @@ public class Exercicio {
         this.nomeExercicio = nomeExercicio;
     }
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Treino getTreino() {
         return treino;
     }

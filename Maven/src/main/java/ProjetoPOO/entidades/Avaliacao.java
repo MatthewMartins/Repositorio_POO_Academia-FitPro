@@ -2,6 +2,7 @@
 package ProjetoPOO.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -133,7 +134,7 @@ public class Avaliacao {
         this.quadril = quadril;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Aluno getAluno() {
         return aluno;
     }
@@ -142,7 +143,7 @@ public class Avaliacao {
         this.aluno = aluno;
     }
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Funcionario getFuncionario() {
         return funcionario;
     }

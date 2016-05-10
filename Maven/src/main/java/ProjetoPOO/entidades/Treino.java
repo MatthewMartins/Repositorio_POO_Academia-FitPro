@@ -56,7 +56,7 @@ public class Treino {
         this.dataExpiracao = dataExpiracao;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Aluno getAluno() {
         return aluno;
     }
@@ -65,7 +65,7 @@ public class Treino {
         this.aluno = aluno;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Funcionario getFuncionario() {
         return funcionario;
     }
