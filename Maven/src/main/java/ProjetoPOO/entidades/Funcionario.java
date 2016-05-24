@@ -1,4 +1,3 @@
-
 package ProjetoPOO.entidades;
 
 import java.util.List;
@@ -9,7 +8,9 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Funcionario {
-    
+
+    private long idBDFuncionario;
+
     private String nomeFun;
     private int idadeFun;
     private String telefoneFun;
@@ -17,10 +18,10 @@ public class Funcionario {
     private String bairroFun;
     private String cidadeFun;
     private long numContrato;
-    private int nivelAcesso;    
+    private int nivelAcesso;
     private List<Avaliacao> listaAvaliacoes;
     private List<Treino> listaTreinos;
-    
+
     public Funcionario() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
     }
@@ -36,6 +37,15 @@ public class Funcionario {
         this.nivelAcesso = nivelAcesso;
         this.listaAvaliacoes = listaAvaliacoes;
         this.listaTreinos = listaTreinos;
+    }
+
+    @Id
+    public long getIdBDFuncionario() {
+        return idBDFuncionario;
+    }
+
+    public void setIdBDFuncionario(long idBDFuncionario) {
+        this.idBDFuncionario = idBDFuncionario;
     }
 
     public String getNomeFun() {
@@ -85,8 +95,7 @@ public class Funcionario {
     public void setCidadeFun(String cidadeFun) {
         this.cidadeFun = cidadeFun;
     }
-    
-    @Id
+
     public long getNumContrato() {
         return numContrato;
     }
@@ -103,7 +112,7 @@ public class Funcionario {
         this.nivelAcesso = nivelAcesso;
     }
 
-    @OneToMany (mappedBy = "funcionario", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     public List<Avaliacao> getListaAvaliacoes() {
         return listaAvaliacoes;
     }
@@ -111,8 +120,8 @@ public class Funcionario {
     public void setListaAvaliacoes(List<Avaliacao> listaAvaliacoes) {
         this.listaAvaliacoes = listaAvaliacoes;
     }
-    
-    @OneToMany (mappedBy = "funcionario", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     public List<Treino> getListaTreinos() {
         return listaTreinos;
     }
@@ -120,7 +129,5 @@ public class Funcionario {
     public void setListaTreinos(List<Treino> listaTreinos) {
         this.listaTreinos = listaTreinos;
     }
-    
-    
-    
+
 }

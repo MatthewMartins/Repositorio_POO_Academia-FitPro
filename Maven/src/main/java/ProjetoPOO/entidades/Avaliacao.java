@@ -1,4 +1,3 @@
-
 package ProjetoPOO.entidades;
 
 import javax.persistence.Entity;
@@ -8,6 +7,9 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Avaliacao {
+
+    private long idBDAvaliacao;
+    
     private long idAvaliacao;
     private float peso;
     private float altura;
@@ -23,11 +25,9 @@ public class Avaliacao {
     private Funcionario funcionario;
 
     public Avaliacao() {
-    
-    
+
     }
-    
-  
+
     public Avaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, Aluno aluno, Funcionario funcionario) {
         this.idAvaliacao = idAvaliacao;
         this.peso = peso;
@@ -43,8 +43,16 @@ public class Avaliacao {
         this.aluno = aluno;
         this.funcionario = funcionario;
     }
-    
+
     @Id
+    public long getIdBDAvaliacao() {
+        return idBDAvaliacao;
+    }
+
+    public void setIdBDAvaliacao(long idBDAvaliacao) {
+        this.idBDAvaliacao = idBDAvaliacao;
+    }
+
     public long getIdAvaliacao() {
         return idAvaliacao;
     }
@@ -52,7 +60,6 @@ public class Avaliacao {
     public void setIdAvaliacao(long idAvaliacao) {
         this.idAvaliacao = idAvaliacao;
     }
-    
 
     public float getPeso() {
         return peso;
@@ -142,7 +149,7 @@ public class Avaliacao {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     public Funcionario getFuncionario() {
         return funcionario;
@@ -152,5 +159,4 @@ public class Avaliacao {
         this.funcionario = funcionario;
     }
 
-    
 }

@@ -1,4 +1,3 @@
-
 package ProjetoPOO.entidades;
 
 import java.util.List;
@@ -10,6 +9,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Aluno {
 
+    private long idBDAluno;
+    
     private String nome;
     private int idade;
     private String telefone;
@@ -21,13 +22,12 @@ public class Aluno {
     private List<Treino> treinoAlunos;
     private List<Avaliacao> avaliacaoAlunos;
     //os relacionamentos MANY TO ONE, recebe tambem o comando: fetch = FetchType.EAGER ????
-    
-    
+
     //teste luiz github
     public Aluno() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
     }
-   
+
     public Aluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<Avaliacao> avaliacaoAlunos, List<Treino> treinoAlunos) {
         this.nome = nome;
         this.idade = idade;
@@ -40,8 +40,16 @@ public class Aluno {
         this.avaliacaoAlunos = avaliacaoAlunos;
         this.treinoAlunos = treinoAlunos;
     }
-    
-    
+
+    @Id
+    public long getIdBDAluno() {
+        return idBDAluno;
+    }
+
+    public void setIdAluno(long idBDAluno) {
+        this.idBDAluno = idBDAluno;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -89,8 +97,7 @@ public class Aluno {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-    @Id
+
     public long getNumMatricula() {
         return numMatricula;
     }
@@ -106,8 +113,9 @@ public class Aluno {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     //fetch = FetchType.EAGER -> ele ja pre recarrega os elementos
-    @OneToMany (mappedBy = "aluno", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
     public List<Avaliacao> getAvaliacaoAlunos() {
         return avaliacaoAlunos;
     }
@@ -115,8 +123,8 @@ public class Aluno {
     public void setAvaliacaoAlunos(List<Avaliacao> avaliacaoAlunos) {
         this.avaliacaoAlunos = avaliacaoAlunos;
     }
-    
-    @OneToMany (mappedBy = "aluno", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
     public List<Treino> getTreinoAlunos() {
         return treinoAlunos;
     }
@@ -124,6 +132,5 @@ public class Aluno {
     public void setTreinoAlunos(List<Treino> treinoAlunos) {
         this.treinoAlunos = treinoAlunos;
     }
-    
-    
+
 }

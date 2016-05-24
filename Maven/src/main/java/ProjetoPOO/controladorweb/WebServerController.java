@@ -7,6 +7,7 @@ import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
+import org.aspectj.lang.annotation.RequiredTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -288,7 +289,13 @@ public class WebServerController {
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
-        
-
     }
+    
+    //-----------------------FORMULARIOS-------------------------------------------------------------
+    
+    @RequestMapping("/cadastroAluno")
+    public String formularioCadastro(){
+       return "cadastroAluno";
+   }
+    
 }

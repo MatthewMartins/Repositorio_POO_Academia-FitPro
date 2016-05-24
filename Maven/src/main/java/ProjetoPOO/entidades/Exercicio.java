@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Exercicio {
 
+    private long idBDExercicio;
+    
     private String nomeExercicio;
     private long idExercicio;
     private String descricao;
@@ -28,7 +30,16 @@ public class Exercicio {
         this.tempoDescanso = tempoDescanso;
         this.treino = treino;
     }
+    
     @Id
+    public long getIdBDExercicio() {
+        return idBDExercicio;
+    }
+
+    public void setIdBDExercicio(long idBDExercicio) {
+        this.idBDExercicio = idBDExercicio;
+    }
+    
     public long getIdExercicio() {
         return idExercicio;
     }
@@ -85,5 +96,5 @@ public class Exercicio {
     public void setTreino(Treino treino) {
         this.treino = treino;
     }
-
+   
 }

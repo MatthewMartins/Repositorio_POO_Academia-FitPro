@@ -10,19 +10,20 @@ import javax.persistence.OneToMany;
 @Entity
 public class Treino {
 
+    private long idBDTreino;
+
     private long idTreino;
     private String nomeTreino;
     private String dataExpiracao; //perguntar sobre anotação @temporal
     private Aluno aluno;
     private Funcionario funcionario;
     private List<Exercicio> exercicios;
-   
 
     public Treino() {
 
     }
 
-    public Treino(long idTreino, String nomeTreino,String dataExpiracao, Aluno aluno, Funcionario funcionario, List<Exercicio> exercicios) {
+    public Treino(long idTreino, String nomeTreino, String dataExpiracao, Aluno aluno, Funcionario funcionario, List<Exercicio> exercicios) {
         this.idTreino = idTreino;
         this.nomeTreino = nomeTreino;
         this.dataExpiracao = dataExpiracao;
@@ -32,6 +33,14 @@ public class Treino {
     }
 
     @Id
+    public long getIdBDTreino() {
+        return idBDTreino;
+    }
+
+    public void setIdBDTreino(long idBDTreino) {
+        this.idBDTreino = idBDTreino;
+    }
+
     public long getIdTreino() {
         return idTreino;
     }
@@ -73,8 +82,8 @@ public class Treino {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    
-    @OneToMany (mappedBy = "treino", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER)
     public List<Exercicio> getExercicios() {
         return exercicios;
     }
@@ -82,6 +91,5 @@ public class Treino {
     public void setExercicios(List<Exercicio> exercicios) {
         this.exercicios = exercicios;
     }
-    
 
 }
