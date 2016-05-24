@@ -13,10 +13,11 @@
     </head>
     <body>
         <h1>Cadastro de Aluno</h1>
-        
-        <form action="aluno/adicionar" method="post">
+        <!--nao usar formaluarios por enquanto pq ele retorna diferente de JSON -->
+        <form action="Controlador/aluno/adicionar" method="post">
             
-            <div> nome <input type="text" name="nomeAluno"> </div>
+            <div> nome <input type="text" name="nome"> </div>
+            <input type="submit" value="Enviar">
         </form>
     </body>
 </html>

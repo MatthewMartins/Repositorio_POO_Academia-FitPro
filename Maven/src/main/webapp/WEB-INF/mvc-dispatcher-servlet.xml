@@ -18,7 +18,7 @@ and open the template in the editor.
         http://www.springframework.org/schema/data/jpa
     	http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-	<context:component-scan base-package="ProjetoPOO.ui" />
+	<context:component-scan base-package="ProjetoPOO.controladorweb" />
 	<context:component-scan base-package="ProjetoPOO.negocios" />
 
 	<mvc:annotation-driven
