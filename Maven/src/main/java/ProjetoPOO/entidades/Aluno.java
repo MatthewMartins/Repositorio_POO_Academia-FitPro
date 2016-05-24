@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 public class Aluno {
 
     private long idBDAluno;
-    
+
     private String nome;
     private int idade;
     private String telefone;
@@ -46,7 +46,7 @@ public class Aluno {
         return idBDAluno;
     }
 
-    public void setIdAluno(long idBDAluno) {
+    public void setIdBDAluno(long idBDAluno) {
         this.idBDAluno = idBDAluno;
     }
 
