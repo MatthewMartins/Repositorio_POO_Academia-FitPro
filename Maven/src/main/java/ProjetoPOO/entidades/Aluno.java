@@ -3,6 +3,8 @@ package ProjetoPOO.entidades;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -21,10 +23,12 @@ public class Aluno {
     private String senha;
     private List<Treino> treinoAlunos;
     private List<Avaliacao> avaliacaoAlunos;
-    //os relacionamentos MANY TO ONE, recebe tambem o comando: fetch = FetchType.EAGER ???
+    
     
     public Aluno() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
+        this.avaliacaoAlunos = avaliacaoAlunos;
+        this.treinoAlunos = treinoAlunos;
     }
 
     public Aluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<Avaliacao> avaliacaoAlunos, List<Treino> treinoAlunos) {
@@ -41,6 +45,7 @@ public class Aluno {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdBDAluno() {
         return idBDAluno;
     }

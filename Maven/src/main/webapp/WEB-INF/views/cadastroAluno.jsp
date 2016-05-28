@@ -14,10 +14,21 @@
     <body>
         <h1>Cadastro de Aluno</h1>
         <!--nao usar formaluarios por enquanto pq ele retorna diferente de JSON -->
+        <!--Procurar saber como fica o "action" do formulario-->
         <form action="Controlador/aluno/adicionar" method="post">
             
-            <div> nome <input type="text" name="nome"> </div>
+            <h1>Cadastro de Aluno</h1>
+            <div> Nome <input type="text" name="nome"> </div>
+            <div> Idade <input type="text" name="idade"> </div>
+            <div> Telefone <input type="text" name="telefone"> </div>
+            <div> Rua <input type="text" name="rua"> </div>
+            <div> Bairro <input type="text" name="bairro"> </div>
+            <div> Cidade <input type="text" name="cidade"> </div>
+            <div> Número de Matricula <input type="text" name="numMatricula"> </div>
+            <div> Senha <input type="text" name="senha"> </div>
+            
             <input type="submit" value="Enviar">
+        
         </form>
     </body>
 </html>

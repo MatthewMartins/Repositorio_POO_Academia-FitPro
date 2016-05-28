@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//usar anotação @Controller para poder usar os formularios
 @RestController
 @RequestMapping("/Controlador")
 public class WebServerController {
  
     @Autowired
     private InterfaceFachada fachada;
-
+    //aqui no listar talvez nao tenha o produces = MediaType...
    @RequestMapping(value = "/aluno/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Aluno> listarAluno() {
         return this.fachada.listarAluno();
@@ -38,7 +39,7 @@ public class WebServerController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @RequestMapping("/aluno/atualizar")
+    @RequestMapping("/aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
     public ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
 
         try {
@@ -289,5 +290,13 @@ public class WebServerController {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
     }
+    
+    //-----------------------------------------------------------------------------------
+    @RequestMapping("/cadastroUsuario")
+    public String formularioCadastrar (){
+        return "cadastroUsuario";
+    }
+    
+    
     
 }

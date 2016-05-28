@@ -3,6 +3,8 @@ package ProjetoPOO.entidades;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -24,6 +26,8 @@ public class Funcionario {
 
     public Funcionario() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
+        this.listaAvaliacoes = listaAvaliacoes;
+        this.listaTreinos = listaTreinos;
     }
 
     public Funcionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos) {
@@ -40,6 +44,7 @@ public class Funcionario {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdBDFuncionario() {
         return idBDFuncionario;
     }

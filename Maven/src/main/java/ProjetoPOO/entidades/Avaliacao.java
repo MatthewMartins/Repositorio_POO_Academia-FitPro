@@ -2,6 +2,8 @@ package ProjetoPOO.entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -25,7 +27,8 @@ public class Avaliacao {
     private Funcionario funcionario;
 
     public Avaliacao() {
-
+        this.aluno = aluno;
+        this.funcionario = funcionario;
     }
 
     public Avaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, Aluno aluno, Funcionario funcionario) {
@@ -45,6 +48,7 @@ public class Avaliacao {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdBDAvaliacao() {
         return idBDAvaliacao;
     }

@@ -3,6 +3,8 @@ package ProjetoPOO.entidades;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,6 +22,9 @@ public class Treino {
     private List<Exercicio> exercicios;
 
     public Treino() {
+        this.aluno = aluno;
+        this.funcionario = funcionario;
+        this.exercicios = exercicios;
 
     }
 
@@ -33,6 +38,7 @@ public class Treino {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getIdBDTreino() {
         return idBDTreino;
     }
