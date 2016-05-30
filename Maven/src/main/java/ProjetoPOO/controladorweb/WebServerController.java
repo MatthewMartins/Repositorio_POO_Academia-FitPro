@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 //usar anotação @Controller para poder usar os formularios
+@Controller
 @RestController
 @RequestMapping("/Controlador")
 public class WebServerController {
@@ -23,15 +25,16 @@ public class WebServerController {
     @Autowired
     private InterfaceFachada fachada;
     //aqui no listar talvez nao tenha o produces = MediaType...
-   @RequestMapping(value = "/aluno/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+   @RequestMapping(value = "aluno/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Aluno> listarAluno() {
         return this.fachada.listarAluno();
     }
 
     //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
-    @RequestMapping("/aluno/adicionar")
+    @RequestMapping("aluno/adicionar")
     public ResponseEntity<?> adicionarAluno(@RequestBody Aluno aluno) {
         try {
+            System.out.println("chegou aqui");
             this.fachada.adicionarAluno(aluno);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
@@ -39,7 +42,7 @@ public class WebServerController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @RequestMapping("/aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
     public ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
 
         try {
@@ -51,7 +54,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/aluno/buscar")
+    @RequestMapping("aluno/buscar")
     public ResponseEntity<?> buscarAlunoID(long numMatricula) {
 
         try {
@@ -64,7 +67,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/aluno/remover")
+    @RequestMapping("aluno/remover")
     public ResponseEntity<?> removerAluno(long numMatricula) {
 
         try {
@@ -76,7 +79,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/avaliacao/adicionar")
+    @RequestMapping("avaliacao/adicionar")
     public ResponseEntity<?> adicionarAvaliacao(@RequestBody Avaliacao avaliacao) {
 
         try {
@@ -88,7 +91,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/avaliacao/atualizar")
+    @RequestMapping("avaliacao/atualizar")
     public ResponseEntity<?> atualizarAvaliacao(@RequestBody Avaliacao avaliacao) {
 
         try {
@@ -101,7 +104,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/avaliacao/remover")
+    @RequestMapping("avaliacao/remover")
     public ResponseEntity<?> removerAvaliacao(long idAvaliacao) {
 
         try {
@@ -114,12 +117,12 @@ public class WebServerController {
 
     }
     
-    @RequestMapping(value = "/avaliacao/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "avaliacao/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Avaliacao> listarAvaliacao() {
         return this.fachada.listarAvaliacao();
     }
 
-    @RequestMapping("/avaliacao/buscar")
+    @RequestMapping("avaliacao/buscar")
     public ResponseEntity<?> buscarAvaliacaoID(long idAvaliacao) {
 
         try {
@@ -131,7 +134,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/funcionario/adicionar")
+    @RequestMapping("funcionario/adicionar")
     public ResponseEntity<?> adicionarFuncionario(@RequestBody Funcionario funcionario) {
 
         try {
@@ -143,7 +146,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/funcionario/atualizar")
+    @RequestMapping("funcionario/atualizar")
     public ResponseEntity<?> atualizarFuncionario(@RequestBody Funcionario funcionario) {
 
         try {
@@ -155,7 +158,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/funcionario/remover")
+    @RequestMapping("funcionario/remover")
     public ResponseEntity<?> removerFuncionario(long numContrato) {
 
         try {
@@ -167,12 +170,12 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "/funcionario/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "funcionario/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Funcionario> listarFuncionario() {
         return this.fachada.listarFuncionario();
     }
 
-    @RequestMapping("/funcionario/buscar")
+    @RequestMapping("funcionario/buscar")
     public ResponseEntity<?> buscarNumContratoFuncionario(long numContrato) {
 
         try {
@@ -185,7 +188,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/treino/adicionar")
+    @RequestMapping("treino/adicionar")
     public ResponseEntity<?> adicionarTreino(@RequestBody Treino treino) {
 
         try {
@@ -197,7 +200,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/treino/atualizar")
+    @RequestMapping("treino/atualizar")
     public ResponseEntity<?> atualizarTreino(@RequestBody Treino treino) {
 
         try {
@@ -209,7 +212,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/treino/remover")
+    @RequestMapping("treino/remover")
     public ResponseEntity<?> removerTreino(long idTreino) {
 
         try {
@@ -221,12 +224,12 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "/treino/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "treino/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Treino> listarTreino() {
         return this.fachada.listarTreino();
     }
 
-    @RequestMapping("/treino/buscar")
+    @RequestMapping("treino/buscar")
     public ResponseEntity<?> buscarTreinoId(long idTreino) {
 
         try {
@@ -239,7 +242,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/exercicio/adicionar")
+    @RequestMapping("exercicio/adicionar")
     public ResponseEntity<?> adicionarExercicio(@RequestBody Exercicio exercicio) {
 
         try {
@@ -251,7 +254,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/exercicio/atualizar")
+    @RequestMapping("exercicio/atualizar")
     public ResponseEntity<?> atualizarExercicio(@RequestBody Exercicio exercicio) {
 
         try {
@@ -263,7 +266,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("/exercicio/remover")
+    @RequestMapping("exercicio/remover")
     public ResponseEntity<?> removerExercicio(long idExercicio) {
 
         try {
@@ -275,12 +278,12 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "/exercicio/listar", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "exercicio/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Exercicio> listarExercicio() {
         return this.fachada.listarExercicio();
     }
 
-    @RequestMapping("/exercicio/buscar")
+    @RequestMapping("exercicio/buscar")
     public ResponseEntity<?> buscarExercicioId(long idExercicio) {
 
         try {
@@ -292,9 +295,9 @@ public class WebServerController {
     }
     
     //-----------------------------------------------------------------------------------
-    @RequestMapping("/cadastroUsuario")
-    public String formularioCadastrar (){
-        return "cadastroUsuario";
+    @RequestMapping("/cadastroAluno")
+    public String formularioCadastrarAluno (){
+        return "cadastroAluno";
     }
     
     

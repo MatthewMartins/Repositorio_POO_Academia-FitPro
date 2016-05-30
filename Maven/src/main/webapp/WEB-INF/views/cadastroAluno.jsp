@@ -13,8 +13,6 @@
     </head>
     <body>
         <h1>Cadastro de Aluno</h1>
-        <!--nao usar formaluarios por enquanto pq ele retorna diferente de JSON -->
-        <!--Procurar saber como fica o "action" do formulario-->
         <form action="Controlador/aluno/adicionar" method="post">
             
             <h1>Cadastro de Aluno</h1>
