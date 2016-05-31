@@ -1,6 +1,8 @@
 package ProjetoPOO.negocios;
 
+import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.entidades.Treino;
+import ProjetoPOO.persistencias.RepositorioAluno;
 import ProjetoPOO.persistencias.RepositorioTreino;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +14,28 @@ public class NegocioTreino implements InterfaceTreino {
 
     @Autowired
     private RepositorioTreino repositorioTreino;
+    @Autowired
+    private RepositorioAluno repositorioAluno;
 
     @Transactional(rollbackFor = TreinoExistenteException.class)
     @Override
-    public void adicionarTreino(Treino treino) throws TreinoExistenteException {
-
-        try {
-            buscarTreinoId(treino.getIdTreino());
-            throw new TreinoExistenteException();
-        } catch (TreinoInexistenteException e) {
-            repositorioTreino.save(treino);
+    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException {
+        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        if (aluno != null) {
+            //blz, agora que achamos o aluno por meio da matricula, como fazemos via implementação pra que esse treino
+            //que vai ser salvo, seja salvo no numero de matricula desse respectivo aluno
+            //sera que criaremos um for? percorrer todo o aluno e no objeto treino, adicionar essas informações?
+            //obs: esse erro ai é pq nao esta implementado ainda nas interfaces
+            //ve se tu entende a logica que eu fiz ai
+            try {
+                buscarTreinoId(treino.getIdTreino());
+                throw new TreinoExistenteException();
+            } catch (TreinoInexistenteException e) {
+                repositorioTreino.save(treino);
+            }
+        }
+        else if(aluno == null){
+            System.out.println("NUMERO DA MATRICULA DO ALUNO NAO ENCONTRADO");
         }
 
     }
