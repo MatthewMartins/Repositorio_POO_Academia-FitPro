@@ -32,7 +32,7 @@ public class NegocioTreino implements InterfaceTreino {
                 throw new TreinoExistenteException();
             } catch (TreinoInexistenteException e) {
                 repositorioTreino.save(treino);
-              // seria assim?  aluno.setTreinoAlunos((List<Treino>) repositorioTreino.save(treino));
+              aluno.setTreinoAlunos((List<Treino>) treino);
               // ou assim? Aluno aluno.treinoAlunos = (list<Treino> repositorioTreino.save(treino);
             }
         }
