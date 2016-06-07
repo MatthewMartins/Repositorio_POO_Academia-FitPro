@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InterfaceTreino {
     
-    public void adicionarTreino(Treino treino) throws TreinoExistenteException;
+    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException;
 
     public void atualizarTreino(Treino treino) throws TreinoInexistenteException;
 

@@ -1,7 +1,9 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Aluno;
+import ProjetoPOO.listar.ListarAluno;
 import ProjetoPOO.persistencias.RepositorioAluno;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +59,24 @@ public class NegocioAluno implements InterfaceAluno {
     }
 
     @Override
-    public List<Aluno> listarAluno() {
-        return (List<Aluno>) repositorioAluno.findAll();
+    public List<ListarAluno> listarAlunos() {
+        List<ListarAluno> retornaListaAlunos = new ArrayList<ListarAluno>();
+        List<Aluno> aluno = (List<Aluno>) repositorioAluno.findAll();
+        for(int i = 0; i<aluno.size(); i++){
+            ListarAluno listarAluno = new ListarAluno(); 
+            listarAluno.setNome(aluno.get(i).getNome());
+            listarAluno.setIdade(aluno.get(i).getIdade());
+            listarAluno.setTelefone(aluno.get(i).getTelefone());
+            listarAluno.setRua(aluno.get(i).getRua());
+            listarAluno.setBairro(aluno.get(i).getBairro());
+            listarAluno.setCidade(aluno.get(i).getCidade());
+            listarAluno.setNumMatricula(aluno.get(i).getNumMatricula());
+            listarAluno.setSenha(aluno.get(i).getSenha());
+            listarAluno.setListaTreinoAlunos(aluno.get(i).getTreinoAlunos());//List<Treino> treinoAlunos;
+            listarAluno.setListaAvaliacaoAlunos(aluno.get(i).getAvaliacaoAlunos());//List<Avaliacao> avaliacaoAlunos;
+            retornaListaAlunos.add(listarAluno);
+        }
+        
+        return retornaListaAlunos; 
     }
 }

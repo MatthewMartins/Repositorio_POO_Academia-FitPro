@@ -22,21 +22,14 @@ public class NegocioTreino implements InterfaceTreino {
     public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException {
         Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
         if (aluno != null) {
-            //blz, agora que achamos o aluno por meio da matricula, como fazemos via implementação pra que esse treino
-            //que vai ser salvo, seja salvo no numero de matricula desse respectivo aluno
-            //sera que criaremos um for? percorrer todo o aluno e no objeto treino, adicionar essas informações?
-            //obs: esse erro ai é pq nao esta implementado ainda nas interfaces
-            //ve se tu entende a logica que eu fiz ai
             try {
                 buscarTreinoId(treino.getIdTreino());
                 throw new TreinoExistenteException();
             } catch (TreinoInexistenteException e) {
                 repositorioTreino.save(treino);
-              aluno.setTreinoAlunos((List<Treino>) treino);
-              // ou assim? Aluno aluno.treinoAlunos = (list<Treino> repositorioTreino.save(treino);
+                aluno.setTreinoAlunos((List<Treino>) treino);
             }
-        }
-        else if(aluno == null){
+        } else if (aluno == null) {
             System.out.println("NUMERO DA MATRICULA DO ALUNO NAO ENCONTRADO");
         }
 

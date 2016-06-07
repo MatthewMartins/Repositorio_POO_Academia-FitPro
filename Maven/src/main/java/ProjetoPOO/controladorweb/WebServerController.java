@@ -5,6 +5,7 @@ import ProjetoPOO.entidades.Avaliacao;
 import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
+import ProjetoPOO.listar.ListarAluno;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +15,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 //usar anotação @Controller para poder usar os formularios
 @Controller
-@RestController
+//@RestController
 @RequestMapping("/Controlador")
 public class WebServerController {
- 
+
     @Autowired
     private InterfaceFachada fachada;
+
     //aqui no listar talvez nao tenha o produces = MediaType...
-   @RequestMapping(value = "aluno/listar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Aluno> listarAluno() {
-        return this.fachada.listarAluno();
+    @RequestMapping(value = "aluno/listar", method = RequestMethod.GET /*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    public @ResponseBody List<ListarAluno> listarAlunos() {
+        return this.fachada.listarAlunos();
     }
 
     //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
     @RequestMapping("aluno/adicionar")
-    public ResponseEntity<?> adicionarAluno(@RequestBody Aluno aluno) {
+    public ResponseEntity<?> adicionarAluno(/*@RequestBody*/Aluno aluno) {
         try {
             System.out.println("chegou aqui");
             this.fachada.adicionarAluno(aluno);
@@ -43,7 +47,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    public ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
+    public ResponseEntity<?> atualizarAluno(/*@RequestBody*/Aluno aluno) {
 
         try {
             this.fachada.atualizarAluno(aluno);
@@ -63,7 +67,6 @@ public class WebServerController {
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
-        
 
     }
 
@@ -96,7 +99,7 @@ public class WebServerController {
 
         try {
             this.fachada.atualizarAvaliacao(avaliacao);
-            
+
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -109,14 +112,14 @@ public class WebServerController {
 
         try {
             this.fachada.removerAvaliacao(idAvaliacao);
-            
+
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<String>(HttpStatus.OK);
 
     }
-    
+
     @RequestMapping(value = "avaliacao/listar", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Avaliacao> listarAvaliacao() {
         return this.fachada.listarAvaliacao();
@@ -184,15 +187,14 @@ public class WebServerController {
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
-        
 
     }
 
     @RequestMapping("treino/adicionar")
-    public ResponseEntity<?> adicionarTreino(@RequestBody Treino treino) {
+    public ResponseEntity<?> adicionarTreino(/*@RequestBody*/Treino treino, long numMatricula) {
 
         try {
-            this.fachada.adicionarTreino(treino);
+            this.fachada.adicionarTreino(treino, numMatricula);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -238,7 +240,6 @@ public class WebServerController {
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
-        
 
     }
 
@@ -293,13 +294,37 @@ public class WebServerController {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     //-----------------------------------------------------------------------------------
     @RequestMapping("/cadastroAluno")
-    public String formularioCadastrarAluno (){
+    public String formularioCadastrarAluno() {
         return "cadastroAluno";
     }
+
+    @RequestMapping("/excluirAluno")
+    public String formularioExcluirAluno() {
+        return "excluirAluno";
+    }
+
+    @RequestMapping("/atualizarAluno")
+    public String formularioAtualizarAluno() {
+        return "atualizarAluno";
+    }
+
+    @RequestMapping("/listarAluno")
+    public String formularioListarAluno() {
+        return "listarAluno";
+    }
+
+    @RequestMapping("/buscarAluno")
+    public String formularioBuscarAluno() {
+        return "buscarAluno";
+    }
     
+    @RequestMapping("/cadastrarTreino")
+    public String formularioCadastrarTreino() {
+        return "cadastrarTreino";
+    }
     
-    
+
 }
