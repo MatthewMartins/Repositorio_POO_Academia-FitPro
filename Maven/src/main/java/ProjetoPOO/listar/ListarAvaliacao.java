@@ -1,17 +1,9 @@
-package ProjetoPOO.entidades;
+package ProjetoPOO.listar;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import ProjetoPOO.entidades.Aluno;
 
-@Entity
-public class Avaliacao implements Serializable {
 
-    private long idBDAvaliacao;
+public class ListarAvaliacao {
     
     private long idAvaliacao;
     private float peso;
@@ -27,12 +19,11 @@ public class Avaliacao implements Serializable {
     private Aluno aluno;
     //private Funcionario funcionario;
 
-    public Avaliacao() {
+    public ListarAvaliacao() {
         this.aluno = aluno;
-       // this.funcionario = funcionario;
     }
 
-    public Avaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, Aluno aluno/*, Funcionario funcionario*/) {
+    public ListarAvaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, Aluno aluno) {
         this.idAvaliacao = idAvaliacao;
         this.peso = peso;
         this.altura = altura;
@@ -45,19 +36,10 @@ public class Avaliacao implements Serializable {
         this.panturrilha = panturrilha;
         this.quadril = quadril;
         this.aluno = aluno;
-        //this.funcionario = funcionario;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getIdBDAvaliacao() {
-        return idBDAvaliacao;
-    }
-
-    public void setIdBDAvaliacao(long idBDAvaliacao) {
-        this.idBDAvaliacao = idBDAvaliacao;
-    }
-
+    
+    
+    
     public long getIdAvaliacao() {
         return idAvaliacao;
     }
@@ -146,7 +128,6 @@ public class Avaliacao implements Serializable {
         this.quadril = quadril;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
     public Aluno getAluno() {
         return aluno;
     }
@@ -154,14 +135,4 @@ public class Avaliacao implements Serializable {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-    /*
-    @ManyToOne(fetch = FetchType.EAGER)
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-    */
 }

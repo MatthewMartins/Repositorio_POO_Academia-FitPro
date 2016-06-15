@@ -23,16 +23,16 @@ public class Funcionario implements Serializable {
     private long numContrato;
     private int nivelAcesso;
     private String senhaFun;
-    private List<Avaliacao> listaAvaliacoes;
-    private List<Treino> listaTreinos;
+    //private List<Avaliacao> listaAvaliacoes;
+    //private List<Treino> listaTreinos;
 
     public Funcionario() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
-        this.listaAvaliacoes = listaAvaliacoes;
-        this.listaTreinos = listaTreinos;
+        //this.listaAvaliacoes = listaAvaliacoes;
+        //this.listaTreinos = listaTreinos;
     }
 
-    public Funcionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos) {
+    public Funcionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun/*, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos*/) {
         this.nomeFun = nomeFun;
         this.idadeFun = idadeFun;
         this.telefoneFun = telefoneFun;
@@ -42,8 +42,8 @@ public class Funcionario implements Serializable {
         this.numContrato = numContrato;
         this.nivelAcesso = nivelAcesso;
         this.senhaFun = senhaFun;
-        this.listaAvaliacoes = listaAvaliacoes;
-        this.listaTreinos = listaTreinos;
+        //this.listaAvaliacoes = listaAvaliacoes;
+        //this.listaTreinos = listaTreinos;
     }
 
     @Id
@@ -127,7 +127,7 @@ public class Funcionario implements Serializable {
     public void setSenhaFun(String senhaFun) {
         this.senhaFun = senhaFun;
     }
-
+    /*
     @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     public List<Avaliacao> getListaAvaliacoes() {
         return listaAvaliacoes;
@@ -145,5 +145,5 @@ public class Funcionario implements Serializable {
     public void setListaTreinos(List<Treino> listaTreinos) {
         this.listaTreinos = listaTreinos;
     }
-
+    */
 }

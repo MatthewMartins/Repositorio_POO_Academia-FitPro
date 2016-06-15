@@ -1,5 +1,6 @@
 package ProjetoPOO.negocios;
 import ProjetoPOO.entidades.Exercicio;
+import ProjetoPOO.listar.ListarExercicio;
 import java.util.List;
 
 public interface InterfaceExercicio {
@@ -10,7 +11,7 @@ public interface InterfaceExercicio {
 
     public void removerExercicio(long idExercicio) throws ExercicioInexistenteException;
 
-    public List<Exercicio> listarExercicio();
+    public List<ListarExercicio> listarExercicios();
 
     public Exercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
 

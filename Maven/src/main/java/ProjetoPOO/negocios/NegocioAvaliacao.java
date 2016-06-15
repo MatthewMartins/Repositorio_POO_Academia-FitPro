@@ -1,7 +1,9 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Avaliacao;
+import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.persistencias.RepositorioAvaliacao;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,26 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
     }
 
     @Override
-    public List<Avaliacao> listarAvaliacao() {
-        return (List<Avaliacao>) repositorioAvaliacao.findAll();
+    public List<ListarAvaliacao> listarAvaliacoes() {
+        List<ListarAvaliacao> retornaListaAvaliacoes = new ArrayList<ListarAvaliacao>();
+        List<Avaliacao> avaliacao = (List<Avaliacao>) repositorioAvaliacao.findAll();
+        for(int i = 0; i<avaliacao.size(); i++){
+            ListarAvaliacao listarAvaliacao = new ListarAvaliacao(); 
+            
+            listarAvaliacao.setIdAvaliacao(avaliacao.get(i).getIdAvaliacao());
+            listarAvaliacao.setPeso(avaliacao.get(i).getPeso());
+            listarAvaliacao.setAltura(avaliacao.get(i).getAltura());
+            listarAvaliacao.setPeito(avaliacao.get(i).getPeito());
+            listarAvaliacao.setBiceps(avaliacao.get(i).getBiceps());
+            listarAvaliacao.setTriceps(avaliacao.get(i).getTriceps());
+            listarAvaliacao.setOmbro(avaliacao.get(i).getOmbro());
+            listarAvaliacao.setCosta(avaliacao.get(i).getCosta());
+            listarAvaliacao.setCoxa(avaliacao.get(i).getCoxa());
+            listarAvaliacao.setPanturrilha(avaliacao.get(i).getPanturrilha());
+            listarAvaliacao.setQuadril(avaliacao.get(i).getQuadril());
+            retornaListaAvaliacoes.add(listarAvaliacao);
+        }
+        
+        return retornaListaAvaliacoes; 
     }
 }

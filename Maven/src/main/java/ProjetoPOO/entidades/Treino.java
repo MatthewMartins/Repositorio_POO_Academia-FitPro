@@ -1,6 +1,7 @@
 package ProjetoPOO.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,22 +20,21 @@ public class Treino implements Serializable {
     private String nomeTreino;
     private String dataExpiracao; //perguntar sobre anotação @temporal
     private Aluno aluno;
-    private Funcionario funcionario;
+    //private Funcionario funcionario;
     private List<Exercicio> exercicios;
 
     public Treino() {
         this.aluno = aluno;
-        this.funcionario = funcionario;
-        this.exercicios = exercicios;
+        this.exercicios = new ArrayList<Exercicio>();
 
     }
 
-    public Treino(long idTreino, String nomeTreino, String dataExpiracao, Aluno aluno, Funcionario funcionario, List<Exercicio> exercicios) {
+    public Treino(long idTreino, String nomeTreino, String dataExpiracao, Aluno aluno/*, Funcionario funcionario*/, List<Exercicio> exercicios) {
         this.idTreino = idTreino;
         this.nomeTreino = nomeTreino;
         this.dataExpiracao = dataExpiracao;
         this.aluno = aluno;
-        this.funcionario = funcionario;
+        //this.funcionario = funcionario;
         this.exercicios = exercicios;
     }
 
@@ -80,7 +80,7 @@ public class Treino implements Serializable {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     public Funcionario getFuncionario() {
         return funcionario;
@@ -89,7 +89,7 @@ public class Treino implements Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
+    */
     @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER)
     public List<Exercicio> getExercicios() {
         return exercicios;

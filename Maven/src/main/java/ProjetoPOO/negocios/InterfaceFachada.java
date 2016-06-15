@@ -11,6 +11,8 @@ import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarAvaliacao;
+import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
 import java.util.List;
 
@@ -36,7 +38,7 @@ public interface InterfaceFachada {
 
     public void removerAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 
-    public List<Avaliacao> listarAvaliacao();
+    public List<ListarAvaliacao> listarAvaliacoes();
 
     public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 
@@ -66,7 +68,7 @@ public interface InterfaceFachada {
 
     public void removerExercicio(long idExercicio) throws ExercicioInexistenteException;
 
-    public List<Exercicio> listarExercicio();
+    public List<ListarExercicio> listarExercicios();
 
     public Exercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
 }

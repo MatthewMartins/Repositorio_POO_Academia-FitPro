@@ -15,15 +15,14 @@ public class ListarFuncionario {
     private long numContrato;
     private int nivelAcesso;
     private String senhaFun;
-    private List<Avaliacao> listaAvaliacoes;
-    private List<Treino> listaTreinos;
+    //private List<Avaliacao> listaAvaliacoes;
+    //private List<Treino> listaTreinos;
 
     public ListarFuncionario() {
-        this.listaAvaliacoes = listaAvaliacoes;
-        this.listaTreinos = listaTreinos;
+
     }
 
-    public ListarFuncionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos) {
+    public ListarFuncionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun/*, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos*/) {
         this.nomeFun = nomeFun;
         this.idadeFun = idadeFun;
         this.telefoneFun = telefoneFun;
@@ -33,8 +32,8 @@ public class ListarFuncionario {
         this.numContrato = numContrato;
         this.nivelAcesso = nivelAcesso;
         this.senhaFun = senhaFun;
-        this.listaAvaliacoes = listaAvaliacoes;
-        this.listaTreinos = listaTreinos;
+        //this.listaAvaliacoes = listaAvaliacoes;
+        //this.listaTreinos = listaTreinos;
     }
 
     public String getNomeFun() {
@@ -109,20 +108,20 @@ public class ListarFuncionario {
         this.senhaFun = senhaFun;
     }
 
-    public List<Avaliacao> getListaAvaliacoes() {
-        return listaAvaliacoes;
-    }
+    //public List<Avaliacao> getListaAvaliacoes() {
+      //  return listaAvaliacoes;
+    //}
 
-    public void setListaAvaliacoes(List<Avaliacao> listaAvaliacoes) {
-        this.listaAvaliacoes = listaAvaliacoes;
-    }
+    //public void setListaAvaliacoes(List<Avaliacao> listaAvaliacoes) {
+      //  this.listaAvaliacoes = listaAvaliacoes;
+    //}
 
-    public List<Treino> getListaTreinos() {
-        return listaTreinos;
-    }
+    //public List<Treino> getListaTreinos() {
+      //  return listaTreinos;
+    //}
 
-    public void setListaTreinos(List<Treino> listaTreinos) {
-        this.listaTreinos = listaTreinos;
-    }
+    //public void setListaTreinos(List<Treino> listaTreinos) {
+      //  this.listaTreinos = listaTreinos;
+    //}
 
 }

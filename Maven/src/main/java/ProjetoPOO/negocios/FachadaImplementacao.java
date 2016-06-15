@@ -6,6 +6,8 @@ import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarAvaliacao;
+import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +67,10 @@ public class FachadaImplementacao implements InterfaceFachada {
     public void removerAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
         this.avaliacoes.removerAvaliacao(idAvaliacao);
     }
-
+    
     @Override
-    public List<Avaliacao> listarAvaliacao() {
-        return this.avaliacoes.listarAvaliacao();
+    public List<ListarAvaliacao> listarAvaliacoes() {
+        return this.avaliacoes.listarAvaliacoes();
     }
 
     @Override
@@ -142,8 +144,8 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public List<Exercicio> listarExercicio() {
-        return this.exercicios.listarExercicio();
+    public List<ListarExercicio> listarExercicios() {
+        return this.exercicios.listarExercicios();
     }
 
     @Override

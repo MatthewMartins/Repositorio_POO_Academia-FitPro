@@ -1,6 +1,7 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Avaliacao;
+import ProjetoPOO.listar.ListarAvaliacao;
 import java.util.List;
 
 public interface InterfaceAvaliacao {
@@ -11,7 +12,7 @@ public interface InterfaceAvaliacao {
 
     public void removerAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 
-    public List<Avaliacao> listarAvaliacao();
+    public List<ListarAvaliacao> listarAvaliacoes();
 
     public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 

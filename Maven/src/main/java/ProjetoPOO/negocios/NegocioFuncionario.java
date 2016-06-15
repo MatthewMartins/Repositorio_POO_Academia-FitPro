@@ -72,8 +72,6 @@ public class NegocioFuncionario implements InterfaceFuncionario {
             listarFuncionario.setNumContrato(funcionario.get(i).getNumContrato());
             listarFuncionario.setNivelAcesso(funcionario.get(i).getNivelAcesso());
             listarFuncionario.setSenhaFun(funcionario.get(i).getSenhaFun());
-            listarFuncionario.setListaAvaliacoes(funcionario.get(i).getListaAvaliacoes());
-            listarFuncionario.setListaTreinos(funcionario.get(i).getListaTreinos());
             retornaListaFuncionarios.add(listarFuncionario);
         }
         

@@ -6,6 +6,8 @@ import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarAvaliacao;
+import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
@@ -121,9 +123,9 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "avaliacao/listar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Avaliacao> listarAvaliacao() {
-        return this.fachada.listarAvaliacao();
+    @RequestMapping(value = "avaliacao/listar", method = RequestMethod.GET)
+    public @ResponseBody List<ListarAvaliacao> listarAvaliacoes() {
+        return this.fachada.listarAvaliacoes();
     }
 
     @RequestMapping("avaliacao/buscar")
@@ -280,11 +282,11 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "exercicio/listar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Exercicio> listarExercicio() {
-        return this.fachada.listarExercicio();
+    @RequestMapping(value = "exercicio/listar", method = RequestMethod.GET /*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    public @ResponseBody List<ListarExercicio> listarExercicios() {
+        return this.fachada.listarExercicios();
     }
-
+    
     @RequestMapping("exercicio/buscar")
     public ResponseEntity<?> buscarExercicioId(long idExercicio) {
 
@@ -313,11 +315,6 @@ public class WebServerController {
         return "atualizarAluno";
     }
 
-    @RequestMapping("/listarAluno")
-    public String formularioListarAluno() {
-        return "listarAluno";
-    }
-
     @RequestMapping("/buscarAluno")
     public String formularioBuscarAluno() {
         return "buscarAluno";
@@ -336,11 +333,6 @@ public class WebServerController {
     @RequestMapping("/atualizarFuncionario")
     public String formularioAtualizarFuncionario() {
         return "atualizarFuncionario";
-    }
-
-    @RequestMapping("/listarFuncionario")
-    public String formularioListarFuncionario() {
-        return "listarFuncionario";
     }
 
     @RequestMapping("/buscarFuncionario")

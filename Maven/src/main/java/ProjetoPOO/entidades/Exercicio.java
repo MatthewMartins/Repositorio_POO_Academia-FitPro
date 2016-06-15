@@ -22,7 +22,7 @@ public class Exercicio implements Serializable {
     private Treino treino;
   
     public Exercicio() {
-        
+        //this.treino = treino;
     }
 
     public Exercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso/*, Treino treino*/) {

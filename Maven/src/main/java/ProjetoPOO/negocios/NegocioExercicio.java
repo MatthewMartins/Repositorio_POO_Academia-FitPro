@@ -1,7 +1,9 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Exercicio;
+import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.persistencias.RepositorioExercicio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +56,22 @@ public class NegocioExercicio implements InterfaceExercicio {
     }
 
     @Override
-    public List<Exercicio> listarExercicio() {
-        return (List<Exercicio>) repositorioExercicio.findAll();
+    public List<ListarExercicio> listarExercicios() {
+        List<ListarExercicio> retornaListaExercicios = new ArrayList<ListarExercicio>();
+        List<Exercicio> exercicio = (List<Exercicio>) repositorioExercicio.findAll();
+        for(int i = 0; i<exercicio.size(); i++){
+            ListarExercicio listarExercicio = new ListarExercicio(); 
+            listarExercicio.setNomeExercicio(exercicio.get(i).getNomeExercicio());
+            listarExercicio.setIdExercicio(exercicio.get(i).getIdExercicio());
+            listarExercicio.setDescricao(exercicio.get(i).getDescricao());
+            listarExercicio.setQtSeries(exercicio.get(i).getQtSeries());
+            listarExercicio.setNumRepeticao(exercicio.get(i).getNumRepeticao());
+            listarExercicio.setTempoDescanso(exercicio.get(i).getTempoDescanso());
+            retornaListaExercicios.add(listarExercicio);
+        }
+        
+        return retornaListaExercicios;
+       
     }
 
 }
