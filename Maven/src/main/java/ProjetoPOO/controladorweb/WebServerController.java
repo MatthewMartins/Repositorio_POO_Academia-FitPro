@@ -6,6 +6,7 @@ import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class WebServerController {
 
     //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
     @RequestMapping("aluno/adicionar")
-    public ResponseEntity<?> adicionarAluno(/*@RequestBody*/Aluno aluno) {
+    public @ResponseBody ResponseEntity<?> adicionarAluno(@RequestBody Aluno aluno) {
         try {
             System.out.println("chegou aqui");
             this.fachada.adicionarAluno(aluno);
@@ -47,7 +48,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    public ResponseEntity<?> atualizarAluno(/*@RequestBody*/Aluno aluno) {
+    public ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
 
         try {
             this.fachada.atualizarAluno(aluno);
@@ -59,7 +60,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/buscar")
-    public ResponseEntity<?> buscarAlunoID(long numMatricula) {
+    public @ResponseBody ResponseEntity<?> buscarAlunoID(long numMatricula) {
 
         try {
             Aluno aluno = this.fachada.buscarIdAluno(numMatricula);
@@ -138,7 +139,7 @@ public class WebServerController {
     }
 
     @RequestMapping("funcionario/adicionar")
-    public ResponseEntity<?> adicionarFuncionario(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<?> adicionarFuncionario(Funcionario funcionario) {
 
         try {
             this.fachada.adicionarFuncionario(funcionario);
@@ -150,7 +151,7 @@ public class WebServerController {
     }
 
     @RequestMapping("funcionario/atualizar")
-    public ResponseEntity<?> atualizarFuncionario(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<?> atualizarFuncionario(Funcionario funcionario) {
 
         try {
             this.fachada.atualizarFuncionario(funcionario);
@@ -173,9 +174,9 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "funcionario/listar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Funcionario> listarFuncionario() {
-        return this.fachada.listarFuncionario();
+    @RequestMapping(value = "funcionario/listar", method = RequestMethod.GET/*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    public @ResponseBody  List<ListarFuncionario> listarFuncionarios() {
+        return this.fachada.listarFuncionarios();
     }
 
     @RequestMapping("funcionario/buscar")
@@ -203,7 +204,7 @@ public class WebServerController {
     }
 
     @RequestMapping("treino/atualizar")
-    public ResponseEntity<?> atualizarTreino(@RequestBody Treino treino) {
+    public ResponseEntity<?> atualizarTreino(Treino treino) {
 
         try {
             this.fachada.atualizarTreino(treino);
@@ -244,7 +245,7 @@ public class WebServerController {
     }
 
     @RequestMapping("exercicio/adicionar")
-    public ResponseEntity<?> adicionarExercicio(@RequestBody Exercicio exercicio) {
+    public ResponseEntity<?> adicionarExercicio(Exercicio exercicio) {
 
         try {
             this.fachada.adicionarExercicio(exercicio);
@@ -295,7 +296,8 @@ public class WebServerController {
         }
     }
 
-    //-----------------------------------------------------------------------------------
+    //-------------------------------------FORMULARIOOS---------------------------------------------- 
+    
     @RequestMapping("/cadastroAluno")
     public String formularioCadastrarAluno() {
         return "cadastroAluno";
@@ -321,10 +323,44 @@ public class WebServerController {
         return "buscarAluno";
     }
     
+    @RequestMapping("/cadastrarFuncionario")
+    public String formularioCadastrarFuncionario() {
+        return "cadastrarFuncionario";
+    }
+
+    @RequestMapping("/excluirFuncionario")
+    public String formularioExcluirFuncionario() {
+        return "excluirFuncionario";
+    }
+
+    @RequestMapping("/atualizarFuncionario")
+    public String formularioAtualizarFuncionario() {
+        return "atualizarFuncionario";
+    }
+
+    @RequestMapping("/listarFuncionario")
+    public String formularioListarFuncionario() {
+        return "listarFuncionario";
+    }
+
+    @RequestMapping("/buscarFuncionario")
+    public String formularioBuscarFuncionario() {
+        return "buscarFuncionario";
+    }
+    
     @RequestMapping("/cadastrarTreino")
     public String formularioCadastrarTreino() {
         return "cadastrarTreino";
     }
     
+    @RequestMapping("/cadastrarExercicio")
+    public String formularioCadastrarExercicio() {
+        return "cadastrarExercicio";
+    }
+    
+    @RequestMapping("/atualizarExercicio")
+    public String formularioAtualizarExercicio() {
+        return "atualizarExercicio";
+    }
 
 }

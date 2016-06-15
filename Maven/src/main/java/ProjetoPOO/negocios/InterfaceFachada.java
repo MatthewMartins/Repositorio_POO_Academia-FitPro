@@ -11,6 +11,7 @@ import ProjetoPOO.entidades.Exercicio;
 import ProjetoPOO.entidades.Funcionario;
 import ProjetoPOO.entidades.Treino;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarFuncionario;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public interface InterfaceFachada {
 
     public void removerFuncionario(long numContrato) throws FuncionarioInexistenteException;
 
-    public List<Funcionario> listarFuncionario();
+    public List<ListarFuncionario> listarFuncionarios();
 
     public Funcionario buscarNumContratoFuncionario(long numContrato) throws FuncionarioInexistenteException;
     

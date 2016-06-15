@@ -1,6 +1,7 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Funcionario;
+import ProjetoPOO.listar.ListarFuncionario;
 import java.util.List;
 
 public interface InterfaceFuncionario {
@@ -11,7 +12,7 @@ public interface InterfaceFuncionario {
 
     public void removerFuncionario(long numContrato) throws FuncionarioInexistenteException;
 
-    public List<Funcionario> listarFuncionario();
+    public List<ListarFuncionario> listarFuncionarios();
 
     public Funcionario buscarNumContratoFuncionario(long numContrato) throws FuncionarioInexistenteException;
 }

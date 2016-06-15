@@ -1,7 +1,9 @@
 package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Funcionario;
+import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.persistencias.RepositorioFuncionario;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,7 @@ public class NegocioFuncionario implements InterfaceFuncionario {
         antigo.setBairroFun(funcionario.getBairroFun());
         antigo.setCidadeFun(funcionario.getCidadeFun());
         antigo.setNivelAcesso(funcionario.getNivelAcesso());
+        antigo.setSenhaFun(funcionario.getSenhaFun());
         repositorioFuncionario.save(antigo);
     }
 
@@ -55,8 +58,26 @@ public class NegocioFuncionario implements InterfaceFuncionario {
     }
 
     @Override
-    public List<Funcionario> listarFuncionario() {
-        return (List<Funcionario>) repositorioFuncionario.findAll();
+    public List<ListarFuncionario> listarFuncionarios() {
+        List<ListarFuncionario> retornaListaFuncionarios = new ArrayList<ListarFuncionario>();
+        List<Funcionario> funcionario = (List<Funcionario>) repositorioFuncionario.findAll();
+        for(int i = 0; i<funcionario.size(); i++){
+            ListarFuncionario listarFuncionario = new ListarFuncionario(); 
+            listarFuncionario.setNomeFun(funcionario.get(i).getNomeFun());
+            listarFuncionario.setIdadeFun(funcionario.get(i).getIdadeFun());
+            listarFuncionario.setTelefoneFun(funcionario.get(i).getTelefoneFun());
+            listarFuncionario.setRuaFun(funcionario.get(i).getRuaFun());
+            listarFuncionario.setBairroFun(funcionario.get(i).getBairroFun());
+            listarFuncionario.setCidadeFun(funcionario.get(i).getCidadeFun());
+            listarFuncionario.setNumContrato(funcionario.get(i).getNumContrato());
+            listarFuncionario.setNivelAcesso(funcionario.get(i).getNivelAcesso());
+            listarFuncionario.setSenhaFun(funcionario.get(i).getSenhaFun());
+            listarFuncionario.setListaAvaliacoes(funcionario.get(i).getListaAvaliacoes());
+            listarFuncionario.setListaTreinos(funcionario.get(i).getListaTreinos());
+            retornaListaFuncionarios.add(listarFuncionario);
+        }
+        
+        return retornaListaFuncionarios; 
     }
 
 }

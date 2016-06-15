@@ -1,5 +1,7 @@
 package ProjetoPOO.entidades;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Aluno {
+public class Aluno implements Serializable {
 
     private long idBDAluno;
 
@@ -27,8 +29,8 @@ public class Aluno {
     
     public Aluno() {
         //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
-        this.avaliacaoAlunos = avaliacaoAlunos;
-        this.treinoAlunos = treinoAlunos;
+        this.avaliacaoAlunos = new ArrayList<Avaliacao>();
+        this.treinoAlunos = new ArrayList<Treino>();
     }
 
     public Aluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<Avaliacao> avaliacaoAlunos, List<Treino> treinoAlunos) {

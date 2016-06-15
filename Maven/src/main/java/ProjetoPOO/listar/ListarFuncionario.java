@@ -1,18 +1,10 @@
-package ProjetoPOO.entidades;
+package ProjetoPOO.listar;
 
-import java.io.Serializable;
+import ProjetoPOO.entidades.Avaliacao;
+import ProjetoPOO.entidades.Treino;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-@Entity
-public class Funcionario implements Serializable {
-
-    private long idBDFuncionario;
+public class ListarFuncionario {
 
     private String nomeFun;
     private int idadeFun;
@@ -26,13 +18,12 @@ public class Funcionario implements Serializable {
     private List<Avaliacao> listaAvaliacoes;
     private List<Treino> listaTreinos;
 
-    public Funcionario() {
-        //O construtor é por causa do framework, pq ele vai utilizar o construtor por baixo dos panos, para criar o BD
+    public ListarFuncionario() {
         this.listaAvaliacoes = listaAvaliacoes;
         this.listaTreinos = listaTreinos;
     }
 
-    public Funcionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos) {
+    public ListarFuncionario(String nomeFun, int idadeFun, String telefoneFun, String ruaFun, String bairroFun, String cidadeFun, long numContrato, int nivelAcesso, String senhaFun, List<Avaliacao> listaAvaliacoes, List<Treino> listaTreinos) {
         this.nomeFun = nomeFun;
         this.idadeFun = idadeFun;
         this.telefoneFun = telefoneFun;
@@ -44,16 +35,6 @@ public class Funcionario implements Serializable {
         this.senhaFun = senhaFun;
         this.listaAvaliacoes = listaAvaliacoes;
         this.listaTreinos = listaTreinos;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getIdBDFuncionario() {
-        return idBDFuncionario;
-    }
-
-    public void setIdBDFuncionario(long idBDFuncionario) {
-        this.idBDFuncionario = idBDFuncionario;
     }
 
     public String getNomeFun() {
@@ -119,7 +100,7 @@ public class Funcionario implements Serializable {
     public void setNivelAcesso(int nivelAcesso) {
         this.nivelAcesso = nivelAcesso;
     }
-    
+
     public String getSenhaFun() {
         return senhaFun;
     }
@@ -128,7 +109,6 @@ public class Funcionario implements Serializable {
         this.senhaFun = senhaFun;
     }
 
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     public List<Avaliacao> getListaAvaliacoes() {
         return listaAvaliacoes;
     }
@@ -137,7 +117,6 @@ public class Funcionario implements Serializable {
         this.listaAvaliacoes = listaAvaliacoes;
     }
 
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER)
     public List<Treino> getListaTreinos() {
         return listaTreinos;
     }

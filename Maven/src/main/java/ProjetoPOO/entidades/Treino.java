@@ -1,5 +1,6 @@
 package ProjetoPOO.entidades;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Treino {
+public class Treino implements Serializable {
 
     private long idBDTreino;
 

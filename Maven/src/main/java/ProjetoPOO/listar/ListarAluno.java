@@ -2,6 +2,7 @@ package ProjetoPOO.listar;
 
 import ProjetoPOO.entidades.Avaliacao;
 import ProjetoPOO.entidades.Treino;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListarAluno {
@@ -18,8 +19,9 @@ public class ListarAluno {
     private List<Avaliacao> listaAvaliacaoAlunos; 
 
     public ListarAluno() {
-        this.ListaTreinoAlunos = ListaTreinoAlunos;
-        this.listaAvaliacaoAlunos = listaAvaliacaoAlunos;
+        //Olhar isso aqui, a parada do array list
+        this.ListaTreinoAlunos = new ArrayList<Treino>();
+        this.listaAvaliacaoAlunos = new ArrayList<Avaliacao>();
     }
 
     public ListarAluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<Treino> ListaTreinoAlunos, List<Avaliacao> listaAvaliacaoAlunos) {
