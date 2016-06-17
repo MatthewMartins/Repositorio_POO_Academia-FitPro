@@ -1,5 +1,6 @@
 package ProjetoPOO.listar;
 
+import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.entidades.Avaliacao;
 import ProjetoPOO.entidades.Treino;
 import java.util.ArrayList;
@@ -15,16 +16,57 @@ public class ListarAluno {
     private String cidade;
     private long numMatricula;
     private String senha;
-    private List<Treino> ListaTreinoAlunos;
-    private List<Avaliacao> listaAvaliacaoAlunos; 
-
-    public ListarAluno() {
-        //Olhar isso aqui, a parada do array list
-        this.ListaTreinoAlunos = new ArrayList<>();
-        this.listaAvaliacaoAlunos = new ArrayList<>();
+    private List<ListarTreino> ListaTreinoAluno;
+    private List<ListarAvaliacao> listaAvaliacaoAluno; 
+    
+    
+    //construtor para listar e buscar os alunos //maneira otimizada, para evitar repetição de codigo
+    public ListarAluno(Aluno aluno) {
+        this.nome = aluno.getNome();
+        this.idade = aluno.getIdade();
+        this.telefone = aluno.getTelefone();
+        this.rua = aluno.getRua();
+        this.bairro = aluno.getBairro();
+        this.cidade = aluno.getCidade();
+        this.numMatricula = aluno.getNumMatricula();
+        this.senha = aluno.getSenha();
+        ListaTreinoAluno = new ArrayList<ListarTreino>();
+        for(int i = 0; i< aluno.getTreinoAlunos().size(); i++){
+            System.out.println("aki");
+            ListarTreino t = new ListarTreino(aluno.getTreinoAlunos().get(i));
+            this.ListaTreinoAluno.add(t);
+        }
+        
+        for(int i = 0; i< aluno.getAvaliacaoAlunos().size(); i++){
+            //ListarTreino t = new ListarTreino(aluno.getTreinoAlunos().get(i));
+            //ListaTreinoAluno.add(t);
+        }
     }
 
-    public ListarAluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<Treino> ListaTreinoAlunos, List<Avaliacao> listaAvaliacaoAlunos) {
+    public List<ListarTreino> getListaTreinoAluno() {
+        return ListaTreinoAluno;
+    }
+
+    public void setListaTreinoAluno(List<ListarTreino> ListaTreinoAluno) {
+        this.ListaTreinoAluno = ListaTreinoAluno;
+    }
+
+    public List<ListarAvaliacao> getListaAvaliacaoAluno() {
+        return listaAvaliacaoAluno;
+    }
+
+    public void setListaAvaliacaoAluno(List<ListarAvaliacao> listaAvaliacaoAluno) {
+        this.listaAvaliacaoAluno = listaAvaliacaoAluno;
+    }
+
+    
+    public ListarAluno() {
+        //Olhar isso aqui, a parada do array list
+        this.ListaTreinoAluno = new ArrayList<ListarTreino>();
+        this.listaAvaliacaoAluno = new ArrayList<ListarAvaliacao>();
+    }
+
+    public ListarAluno(String nome, int idade, String telefone, String rua, String bairro, String cidade, long numMatricula, String senha, List<ListarTreino> ListaTreinoAluno, List<ListarAvaliacao> listaAvaliacaoAluno) {
         this.nome = nome;
         this.idade = idade;
         this.telefone = telefone;
@@ -33,9 +75,11 @@ public class ListarAluno {
         this.cidade = cidade;
         this.numMatricula = numMatricula;
         this.senha = senha;
-        this.ListaTreinoAlunos = ListaTreinoAlunos;
-        this.listaAvaliacaoAlunos = listaAvaliacaoAlunos;
+        this.ListaTreinoAluno = ListaTreinoAluno;
+        this.listaAvaliacaoAluno = listaAvaliacaoAluno;
     }
+
+    
 
 
     public String getNome() {
@@ -102,21 +146,6 @@ public class ListarAluno {
         this.senha = senha;
     }
 
-    public List<Treino> getListaTreinoAlunos() {
-        return ListaTreinoAlunos;
-    }
-
-    public void setListaTreinoAlunos(List<Treino> ListaTreinoAlunos) {
-        this.ListaTreinoAlunos = ListaTreinoAlunos;
-    }
-
-    public List<Avaliacao> getListaAvaliacaoAlunos() {
-        return listaAvaliacaoAlunos;
-    }
-
-    public void setListaAvaliacaoAlunos(List<Avaliacao> listaAvaliacaoAlunos) {
-        this.listaAvaliacaoAlunos = listaAvaliacaoAlunos;
-    }
 
     
 }

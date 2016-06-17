@@ -2,8 +2,6 @@ package ProjetoPOO.listar;
 
 public class ListarExercicio {
 
-    private long idBDExercicio;
-
     private String nomeExercicio;
     private long idExercicio;
     private String descricao;
@@ -12,25 +10,17 @@ public class ListarExercicio {
     private int tempoDescanso;
 
     public ListarExercicio() {
+        
     }
 
-    public ListarExercicio(long idBDExercicio, String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso) {
-        this.idBDExercicio = idBDExercicio;
+    public ListarExercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso) {
+       
         this.nomeExercicio = nomeExercicio;
         this.idExercicio = idExercicio;
         this.descricao = descricao;
         this.qtSeries = qtSeries;
         this.numRepeticao = numRepeticao;
         this.tempoDescanso = tempoDescanso;
-    }
-
-    
-    public long getIdBDExercicio() {
-        return idBDExercicio;
-    }
-
-    public void setIdBDExercicio(long idBDExercicio) {
-        this.idBDExercicio = idBDExercicio;
     }
 
     public String getNomeExercicio() {

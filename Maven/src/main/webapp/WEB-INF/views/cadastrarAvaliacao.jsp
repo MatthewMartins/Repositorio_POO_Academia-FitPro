@@ -21,7 +21,7 @@
             <div> ID <input type="text" name="idAvaliacao"> </div>
             <div> Peso <input type="text" name="peso"> </div>
             <div> Altura <input type="text" name="altura"> </div>
-            <div><h2>Tamanho do:</h2></div></br>
+            <h6>Tamanho do:</h6></br>
             <div> Peito <input type="text" name="peito"> </div>
             <div> Biceps <input type="text" name="biceps"> </div>
             <div> Triceps<input type="text" name="triceps"> </div>

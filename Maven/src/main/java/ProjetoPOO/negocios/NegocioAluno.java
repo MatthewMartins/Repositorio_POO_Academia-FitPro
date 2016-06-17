@@ -62,8 +62,11 @@ public class NegocioAluno implements InterfaceAluno {
     public List<ListarAluno> listarAlunos() {
         List<ListarAluno> retornaListaAlunos = new ArrayList<ListarAluno>();
         List<Aluno> aluno = (List<Aluno>) repositorioAluno.findAll();
+        System.out.println("1");
         for(int i = 0; i<aluno.size(); i++){
-            ListarAluno listarAluno = new ListarAluno(); 
+            ListarAluno listarAluno = new ListarAluno(aluno.get(i)); 
+            retornaListaAlunos.add(listarAluno);
+            /*ListarAluno listarAluno = new ListarAluno(aluno.get(i)); 
             listarAluno.setNome(aluno.get(i).getNome());
             listarAluno.setIdade(aluno.get(i).getIdade());
             listarAluno.setTelefone(aluno.get(i).getTelefone());
@@ -72,9 +75,12 @@ public class NegocioAluno implements InterfaceAluno {
             listarAluno.setCidade(aluno.get(i).getCidade());
             listarAluno.setNumMatricula(aluno.get(i).getNumMatricula());
             listarAluno.setSenha(aluno.get(i).getSenha());
-            listarAluno.setListaTreinoAlunos(aluno.get(i).getTreinoAlunos());//List<Treino> treinoAlunos;
-            listarAluno.setListaAvaliacaoAlunos(aluno.get(i).getAvaliacaoAlunos());//List<Avaliacao> avaliacaoAlunos;
+            
+            listarAluno.setListaTreinoAluno(aluno.get(i).getTreinoAlunos());
+            
+            listarAluno.setListaAvaliacaoAluno(aluno.get(i).getAvaliacaoAlunos());
             retornaListaAlunos.add(listarAluno);
+            System.out.println("3");*/
         }
         
         return retornaListaAlunos; 

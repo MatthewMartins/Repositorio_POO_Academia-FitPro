@@ -9,6 +9,7 @@ import ProjetoPOO.listar.ListarAluno;
 import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
+import ProjetoPOO.listar.ListarTreino;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +55,8 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public void adicionarAvaliacao(Avaliacao avaliacao) throws AvaliacaoExistenteException {
-        this.avaliacoes.adicionarAvaliacao(avaliacao);
+    public void adicionarAvaliacao(Avaliacao avaliacao, long numMatricula) throws AvaliacaoExistenteException {
+        this.avaliacoes.adicionarAvaliacao(avaliacao, numMatricula);
     }
 
     @Override
@@ -119,8 +120,8 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public List<Treino> listarTreino() {
-        return this.treinos.listarTreino();
+    public List<ListarTreino> listarTreinos() {
+        return this.treinos.listarTreinos();
     }
 
     @Override

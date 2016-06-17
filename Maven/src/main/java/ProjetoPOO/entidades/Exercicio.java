@@ -19,7 +19,7 @@ public class Exercicio implements Serializable {
     private int qtSeries;
     private int numRepeticao;
     private int tempoDescanso;
-    private Treino treino;
+    //private Treino treino;
   
     public Exercicio() {
         //this.treino = treino;
@@ -92,7 +92,7 @@ public class Exercicio implements Serializable {
     public void setNomeExercicio(String nomeExercicio) {
         this.nomeExercicio = nomeExercicio;
     }
-    
+    /*
     @ManyToOne(fetch = FetchType.EAGER)
     public Treino getTreino() {
         return treino;
@@ -101,5 +101,5 @@ public class Exercicio implements Serializable {
     public void setTreino(Treino treino) {
         this.treino = treino;
     }
-   
+   */
 }

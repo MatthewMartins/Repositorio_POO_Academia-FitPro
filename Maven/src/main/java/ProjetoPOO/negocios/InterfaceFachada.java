@@ -14,6 +14,7 @@ import ProjetoPOO.listar.ListarAluno;
 import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
+import ProjetoPOO.listar.ListarTreino;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public interface InterfaceFachada {
 
     public Aluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException;
 
-    public void adicionarAvaliacao(Avaliacao avaliacao) throws AvaliacaoExistenteException;
+    public void adicionarAvaliacao(Avaliacao avaliacao, long numMatricula) throws AvaliacaoExistenteException;
 
     public void atualizarAvaliacao(Avaliacao avaliacao) throws AvaliacaoInexistenteException;
 
@@ -58,7 +59,7 @@ public interface InterfaceFachada {
 
     public void removerTreino(long idTreino) throws TreinoInexistenteException;
 
-    public List<Treino> listarTreino();
+    public List<ListarTreino> listarTreinos();
 
     public Treino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
     

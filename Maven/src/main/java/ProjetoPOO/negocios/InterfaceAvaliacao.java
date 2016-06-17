@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InterfaceAvaliacao {
 
-    public void adicionarAvaliacao(Avaliacao avaliacao) throws AvaliacaoExistenteException;
+    public void adicionarAvaliacao(Avaliacao avaliacao, long numMatricula) throws AvaliacaoExistenteException;
 
     public void atualizarAvaliacao(Avaliacao avaliacao) throws AvaliacaoInexistenteException;
 

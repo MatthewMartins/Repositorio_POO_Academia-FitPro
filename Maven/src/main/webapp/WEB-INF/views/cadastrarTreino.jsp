@@ -17,7 +17,7 @@
         <form action="treino/adicionar" method="post">
             
             <div>Inform o Número de Matricula do aluno  <input type="text" name="numMatricula"> </div>
-            <div> Informe o numero do contrato do funcionario <input type="text" name="numContrato"> </div></br>
+            /<!--<div> Informe o numero do contrato do funcionario <input type="text" name="numContrato"> </div></br>-->
             
             
             <div> Id do Treino<input type="text" name="idTreino"> </div>

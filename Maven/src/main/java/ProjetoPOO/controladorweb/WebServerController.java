@@ -9,6 +9,7 @@ import ProjetoPOO.listar.ListarAluno;
 import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
+import ProjetoPOO.listar.ListarTreino;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,16 @@ public class WebServerController {
     //aqui no listar talvez nao tenha o produces = MediaType...
     @RequestMapping(value = "aluno/listar", method = RequestMethod.GET /*produces = MediaType.APPLICATION_JSON_VALUE*/)
     public @ResponseBody List<ListarAluno> listarAlunos() {
-        return this.fachada.listarAlunos();
+        List<ListarAluno> listar = this.fachada.listarAlunos();
+        
+        return listar;
     }
 
     //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
     @RequestMapping("aluno/adicionar")
-    public @ResponseBody ResponseEntity<?> adicionarAluno(@RequestBody Aluno aluno) {
+    public @ResponseBody ResponseEntity<?> adicionarAluno(/*@RequestBody*/ Aluno aluno) {
         try {
-            System.out.println("chegou aqui");
+          
             this.fachada.adicionarAluno(aluno);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
@@ -50,7 +53,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    public ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
+    public ResponseEntity<?> atualizarAluno(/*@RequestBody*/ Aluno aluno) {
 
         try {
             this.fachada.atualizarAluno(aluno);
@@ -86,10 +89,10 @@ public class WebServerController {
     }
 
     @RequestMapping("avaliacao/adicionar")
-    public ResponseEntity<?> adicionarAvaliacao(@RequestBody Avaliacao avaliacao) {
+    public @ResponseBody ResponseEntity<?> adicionarAvaliacao(/*@RequestBody*/ Avaliacao avaliacao, long numMatricula) {
 
         try {
-            this.fachada.adicionarAvaliacao(avaliacao);
+            this.fachada.adicionarAvaliacao(avaliacao, numMatricula);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -98,7 +101,7 @@ public class WebServerController {
     }
 
     @RequestMapping("avaliacao/atualizar")
-    public ResponseEntity<?> atualizarAvaliacao(@RequestBody Avaliacao avaliacao) {
+    public ResponseEntity<?> atualizarAvaliacao(/*@RequestBody*/ Avaliacao avaliacao) {
 
         try {
             this.fachada.atualizarAvaliacao(avaliacao);
@@ -194,8 +197,8 @@ public class WebServerController {
     }
 
     @RequestMapping("treino/adicionar")
-    public ResponseEntity<?> adicionarTreino(/*@RequestBody*/Treino treino, long numMatricula) {
-
+    public @ResponseBody ResponseEntity<?> adicionarTreino(/*@RequestBody*/ Treino treino, long numMatricula) {
+        //tenho que passar a lista de exercicios tambem
         try {
             this.fachada.adicionarTreino(treino, numMatricula);
         } catch (Exception e) {
@@ -229,9 +232,9 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "treino/listar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Treino> listarTreino() {
-        return this.fachada.listarTreino();
+    @RequestMapping(value = "treino/listar", method = RequestMethod.GET)
+    public @ResponseBody List<ListarTreino> listarTreinos() {
+        return this.fachada.listarTreinos();
     }
 
     @RequestMapping("treino/buscar")
@@ -353,6 +356,11 @@ public class WebServerController {
     @RequestMapping("/atualizarExercicio")
     public String formularioAtualizarExercicio() {
         return "atualizarExercicio";
+    }
+    
+    @RequestMapping("/cadastrarAvaliacao")
+    public String formularioCadastrarAvaliacao() {
+        return "cadastrarAvaliacao";
     }
 
 }

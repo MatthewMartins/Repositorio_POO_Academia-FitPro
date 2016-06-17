@@ -2,8 +2,10 @@ package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.entidades.Treino;
+import ProjetoPOO.listar.ListarTreino;
 import ProjetoPOO.persistencias.RepositorioAluno;
 import ProjetoPOO.persistencias.RepositorioTreino;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,9 @@ public class NegocioTreino implements InterfaceTreino {
                 buscarTreinoId(treino.getIdTreino());
                 throw new TreinoExistenteException();
             } catch (TreinoInexistenteException e) {
+                treino.setAluno(aluno);
                 repositorioTreino.save(treino);
-                aluno.setTreinoAlunos((List<Treino>) treino);
+                
             }
         } else if (aluno == null) {
             System.out.println("NUMERO DA MATRICULA DO ALUNO NAO ENCONTRADO");
@@ -60,8 +63,16 @@ public class NegocioTreino implements InterfaceTreino {
     }
 
     @Override
-    public List<Treino> listarTreino() {
-        return (List<Treino>) repositorioTreino.findAll();
+    public List<ListarTreino> listarTreinos() {
+        List<ListarTreino> retornaListaTreinos = new ArrayList<ListarTreino>();
+        List<Treino> treino = (List<Treino>) repositorioTreino.findAll();
+        for (int i = 0; i < treino.size(); i++) {
+            ListarTreino listarTreino = new ListarTreino(treino.get(i));
+            retornaListaTreinos.add(listarTreino);
+            
+        }
+
+        return retornaListaTreinos;
     }
 
 }

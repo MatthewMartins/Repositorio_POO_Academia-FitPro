@@ -1,6 +1,7 @@
 package ProjetoPOO.listar;
 
 import ProjetoPOO.entidades.Aluno;
+import ProjetoPOO.entidades.Avaliacao;
 
 
 public class ListarAvaliacao {
@@ -16,14 +17,30 @@ public class ListarAvaliacao {
     private float coxa;
     private float panturrilha;
     private float quadril;
-    private Aluno aluno;
+    private String nomeAluno; //nome do aluno que esta associado a uma determinada avaliacao
+    //private Aluno aluno;
     //private Funcionario funcionario;
-
+    
+    public ListarAvaliacao(Avaliacao avaliacao){
+        this.idAvaliacao = avaliacao.getIdAvaliacao();
+         this.peso = avaliacao.getPeso();
+         this.altura = avaliacao.getAltura();
+         this.peito = avaliacao.getPeito();
+         this.biceps = avaliacao.getBiceps();
+         this.triceps = avaliacao.getTriceps();
+         this.ombro = avaliacao.getOmbro();
+         this.costa = avaliacao.getCosta();
+         this.coxa = avaliacao.getCoxa();
+         this.panturrilha = avaliacao.getPanturrilha();
+         this.quadril = avaliacao.getQuadril();
+         //fazer o for para pegar o nome do aluno que esta associado a avalicao
+    }
+    
     public ListarAvaliacao() {
-        this.aluno = aluno;
+        //this.aluno = aluno;
     }
 
-    public ListarAvaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, Aluno aluno) {
+    public ListarAvaliacao(long idAvaliacao, float peso, float altura, float peito, float biceps, float triceps, float ombro, float costa, float coxa, float panturrilha, float quadril, String nomeAluno) {
         this.idAvaliacao = idAvaliacao;
         this.peso = peso;
         this.altura = altura;
@@ -35,7 +52,7 @@ public class ListarAvaliacao {
         this.coxa = coxa;
         this.panturrilha = panturrilha;
         this.quadril = quadril;
-        this.aluno = aluno;
+        this.nomeAluno = nomeAluno;
     }
     
     
@@ -128,11 +145,11 @@ public class ListarAvaliacao {
         this.quadril = quadril;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public String getNomeAluno() {
+        return nomeAluno;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setNomeAluno(String nomeAluno) {
+        this.nomeAluno = nomeAluno;
     }
 }

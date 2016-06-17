@@ -24,7 +24,7 @@ public class Treino implements Serializable {
     private List<Exercicio> exercicios;
 
     public Treino() {
-        this.aluno = aluno;
+        
         this.exercicios = new ArrayList<Exercicio>();
 
     }
@@ -90,7 +90,7 @@ public class Treino implements Serializable {
         this.funcionario = funcionario;
     }
     */
-    @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER)
+    @OneToMany(/*mappedBy = "treino",*/ fetch = FetchType.EAGER)
     public List<Exercicio> getExercicios() {
         return exercicios;
     }
