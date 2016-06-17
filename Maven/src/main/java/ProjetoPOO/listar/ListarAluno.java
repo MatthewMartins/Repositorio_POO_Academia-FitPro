@@ -16,7 +16,7 @@ public class ListarAluno {
     private String cidade;
     private long numMatricula;
     private String senha;
-    private List<ListarTreino> ListaTreinoAluno;
+    private List<ListarTreino> listaTreinoAluno;
     private List<ListarAvaliacao> listaAvaliacaoAluno; 
     
     
@@ -30,25 +30,25 @@ public class ListarAluno {
         this.cidade = aluno.getCidade();
         this.numMatricula = aluno.getNumMatricula();
         this.senha = aluno.getSenha();
-        ListaTreinoAluno = new ArrayList<ListarTreino>();
+        this.listaTreinoAluno = new ArrayList<ListarTreino>();
+        this.listaAvaliacaoAluno = new ArrayList<ListarAvaliacao>();
         for(int i = 0; i< aluno.getTreinoAlunos().size(); i++){
-            System.out.println("aki");
-            ListarTreino t = new ListarTreino(aluno.getTreinoAlunos().get(i));
-            this.ListaTreinoAluno.add(t);
+            ListarTreino listaTreinoDesseAluno = new ListarTreino(aluno.getTreinoAlunos().get(i));
+            this.listaTreinoAluno.add(listaTreinoDesseAluno);
         }
         
         for(int i = 0; i< aluno.getAvaliacaoAlunos().size(); i++){
-            //ListarTreino t = new ListarTreino(aluno.getTreinoAlunos().get(i));
-            //ListaTreinoAluno.add(t);
+            ListarAvaliacao listaAvaliacaoDesseAluno = new ListarAvaliacao(aluno.getAvaliacaoAlunos().get(i));
+            this.listaAvaliacaoAluno.add(listaAvaliacaoDesseAluno);
         }
     }
 
     public List<ListarTreino> getListaTreinoAluno() {
-        return ListaTreinoAluno;
+        return listaTreinoAluno;
     }
 
-    public void setListaTreinoAluno(List<ListarTreino> ListaTreinoAluno) {
-        this.ListaTreinoAluno = ListaTreinoAluno;
+    public void setListaTreinoAluno(List<ListarTreino> listaTreinoAluno) {
+        this.listaTreinoAluno = listaTreinoAluno;
     }
 
     public List<ListarAvaliacao> getListaAvaliacaoAluno() {
@@ -61,8 +61,7 @@ public class ListarAluno {
 
     
     public ListarAluno() {
-        //Olhar isso aqui, a parada do array list
-        this.ListaTreinoAluno = new ArrayList<ListarTreino>();
+        this.listaTreinoAluno = new ArrayList<ListarTreino>();
         this.listaAvaliacaoAluno = new ArrayList<ListarAvaliacao>();
     }
 
@@ -75,12 +74,9 @@ public class ListarAluno {
         this.cidade = cidade;
         this.numMatricula = numMatricula;
         this.senha = senha;
-        this.ListaTreinoAluno = ListaTreinoAluno;
+        this.listaTreinoAluno = ListaTreinoAluno;
         this.listaAvaliacaoAluno = listaAvaliacaoAluno;
     }
-
-    
-
 
     public String getNome() {
         return nome;

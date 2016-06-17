@@ -28,7 +28,7 @@ public class Avaliacao implements Serializable {
     //private Funcionario funcionario;
 
     public Avaliacao() {
-        this.aluno = aluno;
+        //this.aluno = aluno;
        // this.funcionario = funcionario;
     }
 

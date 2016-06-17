@@ -29,7 +29,7 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
                 buscarIdAvaliacao(avaliacao.getIdAvaliacao());
                 throw new AvaliacaoExistenteException();
             } catch (AvaliacaoInexistenteException e) {
-                aluno.setAvaliacaoAlunos((List<Avaliacao>) avaliacao);
+                avaliacao.setAluno(aluno);
                 repositorioAvaliacao.save(avaliacao);
                 
             }
@@ -76,6 +76,10 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
         List<ListarAvaliacao> retornaListaAvaliacoes = new ArrayList<ListarAvaliacao>();
         List<Avaliacao> avaliacao = (List<Avaliacao>) repositorioAvaliacao.findAll();
         for (int i = 0; i < avaliacao.size(); i++) {
+            ListarAvaliacao listarAvaliacao = new ListarAvaliacao(avaliacao.get(i));
+            retornaListaAvaliacoes.add(listarAvaliacao);
+            
+            /*    MANEIRA ANTIGA DE FAZER
             ListarAvaliacao listarAvaliacao = new ListarAvaliacao();
 
             listarAvaliacao.setIdAvaliacao(avaliacao.get(i).getIdAvaliacao());
@@ -89,7 +93,7 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
             listarAvaliacao.setCoxa(avaliacao.get(i).getCoxa());
             listarAvaliacao.setPanturrilha(avaliacao.get(i).getPanturrilha());
             listarAvaliacao.setQuadril(avaliacao.get(i).getQuadril());
-            retornaListaAvaliacoes.add(listarAvaliacao);
+            retornaListaAvaliacoes.add(listarAvaliacao);*/
         }
 
         return retornaListaAvaliacoes;

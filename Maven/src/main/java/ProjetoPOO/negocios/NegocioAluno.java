@@ -55,7 +55,14 @@ public class NegocioAluno implements InterfaceAluno {
     @Transactional(rollbackFor = AlunoInexistenteException.class)
     @Override
     public void removerAluno(long numMatricula) throws AlunoInexistenteException {
-        repositorioAluno.delete(buscarIdAluno(numMatricula));
+        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        //repositorioAluno.delete(buscarIdAluno(numMatricula));
+        if(aluno == null){
+            throw new AlunoInexistenteException();
+        }
+        else{
+            repositorioAluno.delete(aluno);
+        }
     }
 
     @Override

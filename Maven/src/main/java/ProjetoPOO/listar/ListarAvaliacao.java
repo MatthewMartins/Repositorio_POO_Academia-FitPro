@@ -3,9 +3,8 @@ package ProjetoPOO.listar;
 import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.entidades.Avaliacao;
 
-
 public class ListarAvaliacao {
-    
+
     private long idAvaliacao;
     private float peso;
     private float altura;
@@ -20,22 +19,23 @@ public class ListarAvaliacao {
     private String nomeAluno; //nome do aluno que esta associado a uma determinada avaliacao
     //private Aluno aluno;
     //private Funcionario funcionario;
-    
-    public ListarAvaliacao(Avaliacao avaliacao){
+
+    public ListarAvaliacao(Avaliacao avaliacao) {
         this.idAvaliacao = avaliacao.getIdAvaliacao();
-         this.peso = avaliacao.getPeso();
-         this.altura = avaliacao.getAltura();
-         this.peito = avaliacao.getPeito();
-         this.biceps = avaliacao.getBiceps();
-         this.triceps = avaliacao.getTriceps();
-         this.ombro = avaliacao.getOmbro();
-         this.costa = avaliacao.getCosta();
-         this.coxa = avaliacao.getCoxa();
-         this.panturrilha = avaliacao.getPanturrilha();
-         this.quadril = avaliacao.getQuadril();
-         //fazer o for para pegar o nome do aluno que esta associado a avalicao
+        this.peso = avaliacao.getPeso();
+        this.altura = avaliacao.getAltura();
+        this.peito = avaliacao.getPeito();
+        this.biceps = avaliacao.getBiceps();
+        this.triceps = avaliacao.getTriceps();
+        this.ombro = avaliacao.getOmbro();
+        this.costa = avaliacao.getCosta();
+        this.coxa = avaliacao.getCoxa();
+        this.panturrilha = avaliacao.getPanturrilha();
+        this.quadril = avaliacao.getQuadril();
+        this.nomeAluno = avaliacao.getAluno().getNome();
+
     }
-    
+
     public ListarAvaliacao() {
         //this.aluno = aluno;
     }
@@ -54,9 +54,7 @@ public class ListarAvaliacao {
         this.quadril = quadril;
         this.nomeAluno = nomeAluno;
     }
-    
-    
-    
+
     public long getIdAvaliacao() {
         return idAvaliacao;
     }

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Fase de testes</title>
+        <title>CADASTRAR ALUNO</title>
     </head>
     <body>
         <h1>Cadastro de Aluno</h1>
@@ -24,11 +24,7 @@
             <div> Cidade <input type="text" name="cidade"> </div>
             <div> Número de Matricula <input type="text" name="numMatricula"> </div>
             <div> Senha <input type="text" name="senha"> </div>
-            <!--Essa lista de treinos e de avaliação precisa ser enviada vazia, para poder a variavel
-                nao ficar nula e eu dps poder adicionar o treino e avaliacao nessas variaveis,
-                como fazer isso?-->
-            <!--<div> Lista de Treinos <input type="text" name="treinoAlunos"> </div>
-            <div> Avaliacao Fisica <input type="text" name="avaliacaoAlunos"> </div>-->
+        
             <input type="submit" value="Enviar">
            
         </form>

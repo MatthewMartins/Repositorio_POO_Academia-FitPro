@@ -10,6 +10,7 @@ import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.listar.ListarTreino;
+import ProjetoPOO.negocios.AlunoInexistenteException;
 import ProjetoPOO.negocios.InterfaceFachada;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,10 @@ public class WebServerController {
     @Autowired
     private InterfaceFachada fachada;
 
-    //aqui no listar talvez nao tenha o produces = MediaType...
-    @RequestMapping(value = "aluno/listar", method = RequestMethod.GET /*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    
+    @RequestMapping(value = "aluno/listar", method = RequestMethod.GET)
     public @ResponseBody List<ListarAluno> listarAlunos() {
-        List<ListarAluno> listar = this.fachada.listarAlunos();
-        
-        return listar;
+        return this.fachada.listarAlunos();
     }
 
     //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
@@ -53,7 +52,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    public ResponseEntity<?> atualizarAluno(/*@RequestBody*/ Aluno aluno) {
+    public @ResponseBody ResponseEntity<?> atualizarAluno(/*@RequestBody*/ Aluno aluno) {
 
         try {
             this.fachada.atualizarAluno(aluno);
@@ -65,9 +64,10 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/buscar")
-    public @ResponseBody ResponseEntity<?> buscarAlunoID(long numMatricula) {
+    public @ResponseBody /*Aluno*/ResponseEntity<?> buscarAlunoID(long numMatricula) {
 
         try {
+            //return this.fachada.buscarIdAluno(numMatricula);
             Aluno aluno = this.fachada.buscarIdAluno(numMatricula);
             return new ResponseEntity<Aluno>(aluno, HttpStatus.OK);
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/remover")
-    public ResponseEntity<?> removerAluno(long numMatricula) {
+    public /*@ResponseBody*/ResponseEntity<?> removerAluno(long numMatricula) {
 
         try {
             this.fachada.removerAluno(numMatricula);
@@ -262,7 +262,7 @@ public class WebServerController {
     }
 
     @RequestMapping("exercicio/atualizar")
-    public ResponseEntity<?> atualizarExercicio(@RequestBody Exercicio exercicio) {
+    public ResponseEntity<?> atualizarExercicio(/*@RequestBody*/ Exercicio exercicio) {
 
         try {
             this.fachada.atualizarExercicio(exercicio);
@@ -303,9 +303,9 @@ public class WebServerController {
 
     //-------------------------------------FORMULARIOOS---------------------------------------------- 
     
-    @RequestMapping("/cadastroAluno")
+    @RequestMapping("/cadastrarAluno")
     public String formularioCadastrarAluno() {
-        return "cadastroAluno";
+        return "cadastrarAluno";
     }
 
     @RequestMapping("/excluirAluno")
@@ -348,6 +348,21 @@ public class WebServerController {
         return "cadastrarTreino";
     }
     
+    @RequestMapping("/atualizarTreino")
+    public String formularioAtualizarTreino() {
+        return "atualizarTreino";
+    }
+    
+    @RequestMapping("/buscarTreino")
+    public String formularioBuscarTreino() {
+        return "buscarTreino";
+    }
+    
+    @RequestMapping("/excluirTreino")
+    public String formularioExcluirTreino() {
+        return "excluirTreino";
+    }
+    
     @RequestMapping("/cadastrarExercicio")
     public String formularioCadastrarExercicio() {
         return "cadastrarExercicio";
@@ -358,9 +373,34 @@ public class WebServerController {
         return "atualizarExercicio";
     }
     
+    @RequestMapping("/buscarExercicio")
+    public String formularioBuscarExercicio() {
+        return "buscarExercicio";
+    }
+    
+    @RequestMapping("/excluirExercicio")
+    public String formularioExcluirExercicio() {
+        return "excluirExercicio";
+    }
+    
     @RequestMapping("/cadastrarAvaliacao")
     public String formularioCadastrarAvaliacao() {
         return "cadastrarAvaliacao";
+    }
+    
+    @RequestMapping("/atualizarAvaliacao")
+    public String formularioAtualizarAvaliacao() {
+        return "atualizarAvaliacao";
+    }
+    
+    @RequestMapping("/buscarAvaliacao")
+    public String formularioBuscarAvaliacao() {
+        return "buscarAvaliacao";
+    }
+    
+    @RequestMapping("/excluirAvaliacao")
+    public String formularioExcluirAvaliacao() {
+        return "excluirAvaliacao";
     }
 
 }

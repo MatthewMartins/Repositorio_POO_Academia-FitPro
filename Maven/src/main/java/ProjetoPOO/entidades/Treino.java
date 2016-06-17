@@ -24,9 +24,7 @@ public class Treino implements Serializable {
     private List<Exercicio> exercicios;
 
     public Treino() {
-        
         this.exercicios = new ArrayList<Exercicio>();
-
     }
 
     public Treino(long idTreino, String nomeTreino, String dataExpiracao, Aluno aluno/*, Funcionario funcionario*/, List<Exercicio> exercicios) {
