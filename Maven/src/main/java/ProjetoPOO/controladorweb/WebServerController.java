@@ -105,7 +105,6 @@ public class WebServerController {
 
         try {
             this.fachada.atualizarAvaliacao(avaliacao);
-
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }

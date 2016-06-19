@@ -64,7 +64,7 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
         repositorioAvaliacao.save(antiga);
 
     }
-
+    
     @Transactional(rollbackFor = AvaliacaoInexistenteException.class)
     @Override
     public void removerAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {

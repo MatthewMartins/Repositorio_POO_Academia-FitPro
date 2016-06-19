@@ -12,10 +12,9 @@
         <title>CADASTRAR ALUNO</title>
     </head>
     <body>
-        <h1>Cadastro de Aluno</h1>
         <form action= "aluno/adicionar" method="post">  
             
-            <h1>Cadastro de Aluno</h1>
+            <h1>Cadastrar Aluno</h1>
             <div> Nome <input type="text" name="nome"> </div> 
             <div> Idade <input type="text" name="idade"> </div> 
             <div> Telefone <input type="text" name="telefone"> </div>

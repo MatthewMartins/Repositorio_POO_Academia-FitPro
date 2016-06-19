@@ -55,14 +55,7 @@ public class NegocioAluno implements InterfaceAluno {
     @Transactional(rollbackFor = AlunoInexistenteException.class)
     @Override
     public void removerAluno(long numMatricula) throws AlunoInexistenteException {
-        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
-        //repositorioAluno.delete(buscarIdAluno(numMatricula));
-        if(aluno == null){
-            throw new AlunoInexistenteException();
-        }
-        else{
-            repositorioAluno.delete(aluno);
-        }
+        repositorioAluno.delete(buscarIdAluno(numMatricula));
     }
 
     @Override
@@ -70,8 +63,8 @@ public class NegocioAluno implements InterfaceAluno {
         List<ListarAluno> retornaListaAlunos = new ArrayList<ListarAluno>();
         List<Aluno> aluno = (List<Aluno>) repositorioAluno.findAll();
         System.out.println("1");
-        for(int i = 0; i<aluno.size(); i++){
-            ListarAluno listarAluno = new ListarAluno(aluno.get(i)); 
+        for (int i = 0; i < aluno.size(); i++) {
+            ListarAluno listarAluno = new ListarAluno(aluno.get(i));
             retornaListaAlunos.add(listarAluno);
             /*ListarAluno listarAluno = new ListarAluno(aluno.get(i)); 
             listarAluno.setNome(aluno.get(i).getNome());
@@ -89,7 +82,7 @@ public class NegocioAluno implements InterfaceAluno {
             retornaListaAlunos.add(listarAluno);
             System.out.println("3");*/
         }
-        
-        return retornaListaAlunos; 
+
+        return retornaListaAlunos;
     }
 }

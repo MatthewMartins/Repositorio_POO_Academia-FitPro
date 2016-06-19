@@ -23,10 +23,8 @@
             <div> Número do contrato <input type="text" name="numContrato"> </div>
             <div> Nivel de Acesso <input type="text" name="nivelAcesso"> </div>
             <div> Senha <input type="text" name="senhaFun"> </div>
-            <!-- Colocar essas variaveis para receber automaticamente todos os treinos e avaliações feitas para
-                que o funcionario possa ter acesso no seu menu
-                List<Avaliacao> listaAvaliacoes;
-                List<Treino> listaTreinos; -->
+           
+            <input type="submit" value="Cadastrar">
         </form>
 
     </body>
