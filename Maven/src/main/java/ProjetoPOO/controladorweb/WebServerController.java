@@ -76,6 +76,26 @@ public class WebServerController {
         }
 
     }
+    
+    @RequestMapping("aluno/historicoTreino")
+    public ResponseEntity<?> historicoTreinosAluno(long numMatricula){
+        try {
+            List<ListarTreino> historico = this.fachada.historicoTreinosAluno(numMatricula);
+            return new ResponseEntity<List<ListarTreino>>(historico, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @RequestMapping("aluno/historicoAvaliacao")
+    public ResponseEntity<?> historicoAvaliacoesAluno(long numMatricula){
+        try {
+            List<ListarAvaliacao> historicoAvaliacao = this.fachada.historicoAvaliacoesAluno(numMatricula);
+            return new ResponseEntity<List<ListarAvaliacao>>(historicoAvaliacao, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @RequestMapping("aluno/remover")
     public /*@ResponseBody*/ResponseEntity<?> removerAluno(long numMatricula) {
@@ -248,7 +268,7 @@ public class WebServerController {
         }
 
     }
-
+    
     @RequestMapping("exercicio/adicionar")
     public ResponseEntity<?> adicionarExercicio(long idTreino, Exercicio exercicio) {
 
@@ -304,6 +324,9 @@ public class WebServerController {
 
     //-------------------------------------FORMULARIOOS---------------------------------------------- 
     
+    
+    // -----------------  ALUNO -------------------
+    
     @RequestMapping("/cadastrarAluno")
     public String formularioCadastrarAluno() {
         return "cadastrarAluno";
@@ -318,11 +341,23 @@ public class WebServerController {
     public String formularioAtualizarAluno() {
         return "atualizarAluno";
     }
+    
+    @RequestMapping("/historicoTreinosAluno")
+    public String formularioHistoricoTreinoAluno() {
+        return "historicoTreinosAluno";
+    }
+    
+    @RequestMapping("/historicoAvaliacoesAluno")
+    public String formularioHistoricoAvaliacaoAluno() {
+        return "historicoAvaliacoesAluno";
+    }
 
     @RequestMapping("/buscarAluno")
     public String formularioBuscarAluno() {
         return "buscarAluno";
     }
+    
+    // -----------------  FUNCIONARIO -------------------
     
     @RequestMapping("/cadastrarFuncionario")
     public String formularioCadastrarFuncionario() {
@@ -344,6 +379,8 @@ public class WebServerController {
         return "buscarFuncionario";
     }
     
+    // -----------------  TREINO -------------------
+    
     @RequestMapping("/cadastrarTreino")
     public String formularioCadastrarTreino() {
         return "cadastrarTreino";
@@ -363,6 +400,8 @@ public class WebServerController {
     public String formularioExcluirTreino() {
         return "excluirTreino";
     }
+    
+    // -----------------  EXERCICIO -------------------
     
     @RequestMapping("/cadastrarExercicio")
     public String formularioCadastrarExercicio() {
@@ -384,6 +423,8 @@ public class WebServerController {
         return "excluirExercicio";
     }
     
+    // -----------------  AVALIACAO-------------------
+    
     @RequestMapping("/cadastrarAvaliacao")
     public String formularioCadastrarAvaliacao() {
         return "cadastrarAvaliacao";
@@ -403,5 +444,5 @@ public class WebServerController {
     public String formularioExcluirAvaliacao() {
         return "excluirAvaliacao";
     }
-
+    
 }

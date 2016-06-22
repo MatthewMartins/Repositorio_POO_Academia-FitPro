@@ -30,7 +30,7 @@ public class NegocioTreino implements InterfaceTreino {
             } catch (TreinoInexistenteException e) {
                 treino.setAluno(aluno);
                 repositorioTreino.save(treino);
-                
+
             }
         } else if (aluno == null) {
             System.out.println("NUMERO DA MATRICULA DO ALUNO NAO ENCONTRADO");
@@ -55,7 +55,7 @@ public class NegocioTreino implements InterfaceTreino {
         }
         return treino;
     }
-    
+
     @Transactional(rollbackFor = TreinoInexistenteException.class)
     @Override
     public void atualizarTreino(Treino treino) throws TreinoInexistenteException {
@@ -79,15 +79,10 @@ public class NegocioTreino implements InterfaceTreino {
         for (int i = 0; i < treino.size(); i++) {
             ListarTreino listarTreino = new ListarTreino(treino.get(i));
             retornaListaTreinos.add(listarTreino);
-            
+
         }
 
         return retornaListaTreinos;
     }
-    /*
-    public List<ListarTreino> historicoTreinosAluno(long numMatricula){
-        
-        
-    } 
-*/
+
 }

@@ -2,6 +2,7 @@ package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarTreino;
 import ProjetoPOO.persistencias.RepositorioAluno;
 import ProjetoPOO.persistencias.RepositorioTreino;
@@ -97,5 +98,35 @@ public class NegocioAluno implements InterfaceAluno {
         }
 
         return retornaListaAlunos;
+    }
+    
+    @Override
+    public List<ListarTreino> historicoTreinosAluno(long numMatricula) throws AlunoInexistenteException {
+        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        if (aluno == null) {
+            throw new AlunoInexistenteException();
+        }
+        List<ListarTreino> listaTreinosAluno = new ArrayList<ListarTreino>();
+        for (int i = 0; i < aluno.getTreinoAlunos().size(); i++) {
+            ListarTreino listaTreinoDesseAluno = new ListarTreino(aluno.getTreinoAlunos().get(i));
+            listaTreinosAluno.add(listaTreinoDesseAluno);
+        }
+        
+        return listaTreinosAluno;
+    }
+    
+    @Override
+    public List<ListarAvaliacao> historicoAvaliacoesAluno(long numMatricula) throws AlunoInexistenteException {
+        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        if (aluno == null) {
+            throw new AlunoInexistenteException();
+        }
+        List<ListarAvaliacao> listaAvaliacoesAluno = new ArrayList<ListarAvaliacao>();
+        for (int i = 0; i < aluno.getAvaliacaoAlunos().size(); i++) {
+            ListarAvaliacao listaAvaliacaoDesseAluno = new ListarAvaliacao(aluno.getAvaliacaoAlunos().get(i));
+            listaAvaliacoesAluno.add(listaAvaliacaoDesseAluno);
+        }
+        
+        return listaAvaliacoesAluno;
     }
 }
