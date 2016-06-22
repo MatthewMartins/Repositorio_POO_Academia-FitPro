@@ -21,7 +21,7 @@ public class NegocioTreino implements InterfaceTreino {
 
     @Transactional(rollbackFor = TreinoExistenteException.class)
     @Override
-    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException {
+    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException, AlunoInexistenteException {
         Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
         if (aluno != null) {
             try {
@@ -34,6 +34,7 @@ public class NegocioTreino implements InterfaceTreino {
             }
         } else if (aluno == null) {
             System.out.println("NUMERO DA MATRICULA DO ALUNO NAO ENCONTRADO");
+            throw new AlunoInexistenteException();
         }
 
     }

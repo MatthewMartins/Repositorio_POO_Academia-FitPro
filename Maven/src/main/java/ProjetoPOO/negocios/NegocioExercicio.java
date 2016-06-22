@@ -27,7 +27,7 @@ public class NegocioExercicio implements InterfaceExercicio {
 
     @Transactional(rollbackFor = ExercicioExistenteException.class)
     @Override
-    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException {
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException, TreinoInexistenteException {
         Treino treino = repositorioTreino.findByIdTreino(idTreino);
         if (treino != null) {
             try {
@@ -38,12 +38,8 @@ public class NegocioExercicio implements InterfaceExercicio {
                 repositorioExercicio.save(exercicio);    
             }
         }else if (treino == null) {
-            /*try {
-                throw new TreinoInexistenteException();
-            } catch (TreinoInexistenteException ex) {
-                
-            }*/
             System.out.println("ID DO TREINO NAO ENCONTRADO");
+            throw new TreinoInexistenteException();
         }
     }
 

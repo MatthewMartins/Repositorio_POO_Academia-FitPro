@@ -105,7 +105,7 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException {
+    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException, AlunoInexistenteException {
         this.treinos.adicionarTreino(treino, numMatricula);
     }
 
@@ -130,7 +130,7 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException {
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException, TreinoInexistenteException {
         this.exercicios.adicionarExercicio(idTreino, exercicio);
     }
 

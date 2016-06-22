@@ -53,7 +53,7 @@ public interface InterfaceFachada {
 
     public Funcionario buscarNumContratoFuncionario(long numContrato) throws FuncionarioInexistenteException;
     
-    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException;
+    public void adicionarTreino(Treino treino, long numMatricula) throws TreinoExistenteException, AlunoInexistenteException;
 
     public void atualizarTreino(Treino treino) throws TreinoInexistenteException;
 
@@ -63,7 +63,7 @@ public interface InterfaceFachada {
 
     public ListarTreino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
     
-    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException;
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException, TreinoInexistenteException;
 
     public void atualizarExercicio(Exercicio exercicio) throws ExercicioInexistenteException;
 
