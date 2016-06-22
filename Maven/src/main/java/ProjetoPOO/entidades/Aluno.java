@@ -122,7 +122,7 @@ public class Aluno implements Serializable {
     }
 
     //fetch = FetchType.EAGER -> ele ja pre recarrega os elementos
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER/*cascade = CascadeType.REMOVE*/)
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public List<Avaliacao> getAvaliacaoAlunos() {
         return avaliacaoAlunos;
     }
@@ -131,7 +131,7 @@ public class Aluno implements Serializable {
         this.avaliacaoAlunos = avaliacaoAlunos;
     }
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER /*cascade = CascadeType.REMOVE*/)
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public List<Treino> getTreinoAlunos() {
         return treinoAlunos;
     }

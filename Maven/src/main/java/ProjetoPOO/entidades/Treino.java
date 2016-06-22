@@ -89,7 +89,7 @@ public class Treino implements Serializable {
         this.funcionario = funcionario;
     }
     */
-    @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER/*, cascade = CascadeType.ALL*/)
+    @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     public List<Exercicio> getExercicios() {
         return exercicios;
     }

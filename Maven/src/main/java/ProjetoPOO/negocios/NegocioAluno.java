@@ -2,7 +2,9 @@ package ProjetoPOO.negocios;
 
 import ProjetoPOO.entidades.Aluno;
 import ProjetoPOO.listar.ListarAluno;
+import ProjetoPOO.listar.ListarTreino;
 import ProjetoPOO.persistencias.RepositorioAluno;
+import ProjetoPOO.persistencias.RepositorioTreino;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,10 @@ public class NegocioAluno implements InterfaceAluno {
 
     @Autowired
     private RepositorioAluno repositorioAluno;
-
+    
+    @Autowired
+    private RepositorioTreino repositorioTreino;
+    
     @Transactional(rollbackFor = AlunoExistenteException.class)
     @Override
     public void adicionarAluno(Aluno aluno) throws AlunoExistenteException {
@@ -63,6 +68,16 @@ public class NegocioAluno implements InterfaceAluno {
     @Transactional(rollbackFor = AlunoInexistenteException.class)
     @Override
     public void removerAluno(long numMatricula) throws AlunoInexistenteException {
+        //preciso pegar o treino e avaliacao que esta associado a esse aluno e excluir
+        //antes de excluir o aluno
+        //no form ele so passa o id do aluno, como eu pego esse ID do aluno e atraves dele pego o treino do aluno
+        /*Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        List<ListarTreino> listaTreinoAluno = new ArrayList<ListarTreino>();
+         for(int i = 0; i< aluno.getTreinoAlunos().size(); i++){
+            ListarTreino listaTreinoDesseAluno = new ListarTreino(aluno.getTreinoAlunos().get(i));
+            listaTreinoAluno.add(listaTreinoDesseAluno);
+            //repositorioTreino.delete(buscarTreinoId(aluno.getTreinoAlunos().get(i)));
+        }*/
         repositorioAluno.delete(buscarId(numMatricula));
     }
 

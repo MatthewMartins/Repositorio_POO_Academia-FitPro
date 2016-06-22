@@ -83,5 +83,10 @@ public class NegocioTreino implements InterfaceTreino {
 
         return retornaListaTreinos;
     }
-
+    /*
+    public List<ListarTreino> historicoTreinosAluno(long numMatricula){
+        
+        
+    } 
+*/
 }
