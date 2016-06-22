@@ -31,7 +31,7 @@ public interface InterfaceFachada {
 
     public List<ListarAluno> listarAlunos();
 
-    public Aluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException;
+    public ListarAluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException;
 
     public void adicionarAvaliacao(Avaliacao avaliacao, long numMatricula) throws AvaliacaoExistenteException;
 
@@ -41,7 +41,7 @@ public interface InterfaceFachada {
 
     public List<ListarAvaliacao> listarAvaliacoes();
 
-    public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
+    public ListarAvaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 
     public void adicionarFuncionario(Funcionario funcionario) throws FuncionarioExistenteException;
 
@@ -61,9 +61,9 @@ public interface InterfaceFachada {
 
     public List<ListarTreino> listarTreinos();
 
-    public Treino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
+    public ListarTreino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
     
-    public void adicionarExercicio(Exercicio exercicio) throws ExercicioExistenteException;
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException;
 
     public void atualizarExercicio(Exercicio exercicio) throws ExercicioInexistenteException;
 
@@ -71,5 +71,5 @@ public interface InterfaceFachada {
 
     public List<ListarExercicio> listarExercicios();
 
-    public Exercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
+    public ListarExercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
 }

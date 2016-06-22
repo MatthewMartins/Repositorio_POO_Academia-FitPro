@@ -12,6 +12,7 @@ import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.listar.ListarTreino;
 import ProjetoPOO.negocios.AlunoInexistenteException;
 import ProjetoPOO.negocios.InterfaceFachada;
+import ProjetoPOO.persistencias.RepositorioTreino;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,8 +33,8 @@ public class WebServerController {
 
     @Autowired
     private InterfaceFachada fachada;
-
     
+  
     @RequestMapping(value = "aluno/listar", method = RequestMethod.GET)
     public @ResponseBody List<ListarAluno> listarAlunos() {
         return this.fachada.listarAlunos();
@@ -68,8 +69,8 @@ public class WebServerController {
 
         try {
             //return this.fachada.buscarIdAluno(numMatricula);
-            Aluno aluno = this.fachada.buscarIdAluno(numMatricula);
-            return new ResponseEntity<Aluno>(aluno, HttpStatus.OK);
+            ListarAluno aluno = this.fachada.buscarIdAluno(numMatricula);
+            return new ResponseEntity<ListarAluno>(aluno, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -134,8 +135,8 @@ public class WebServerController {
     public ResponseEntity<?> buscarAvaliacaoID(long idAvaliacao) {
 
         try {
-            Avaliacao avaliacao = this.fachada.buscarIdAvaliacao(idAvaliacao);
-            return new ResponseEntity<Avaliacao>(avaliacao, HttpStatus.OK);
+            ListarAvaliacao avaliacao = this.fachada.buscarIdAvaliacao(idAvaliacao);
+            return new ResponseEntity<ListarAvaliacao>(avaliacao, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -197,7 +198,7 @@ public class WebServerController {
 
     @RequestMapping("treino/adicionar")
     public @ResponseBody ResponseEntity<?> adicionarTreino(/*@RequestBody*/ Treino treino, long numMatricula) {
-        //tenho que passar a lista de exercicios tambem
+        
         try {
             this.fachada.adicionarTreino(treino, numMatricula);
         } catch (Exception e) {
@@ -240,8 +241,8 @@ public class WebServerController {
     public ResponseEntity<?> buscarTreinoId(long idTreino) {
 
         try {
-            Treino treino = this.fachada.buscarTreinoId(idTreino);
-            return new ResponseEntity<Treino>(treino, HttpStatus.OK);
+            ListarTreino treino = this.fachada.buscarTreinoId(idTreino);
+            return new ResponseEntity<ListarTreino>(treino, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -249,10 +250,11 @@ public class WebServerController {
     }
 
     @RequestMapping("exercicio/adicionar")
-    public ResponseEntity<?> adicionarExercicio(Exercicio exercicio) {
+    public ResponseEntity<?> adicionarExercicio(long idTreino, Exercicio exercicio) {
 
         try {
-            this.fachada.adicionarExercicio(exercicio);
+            this.fachada.adicionarExercicio(idTreino, exercicio);
+       
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -293,8 +295,8 @@ public class WebServerController {
     public ResponseEntity<?> buscarExercicioId(long idExercicio) {
 
         try {
-            Exercicio exercicio = this.fachada.buscarExercicioId(idExercicio);
-            return new ResponseEntity<Exercicio>(exercicio, HttpStatus.OK);
+            ListarExercicio exercicio = this.fachada.buscarExercicioId(idExercicio);
+            return new ResponseEntity<ListarExercicio>(exercicio, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }

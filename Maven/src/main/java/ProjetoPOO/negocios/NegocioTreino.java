@@ -39,27 +39,36 @@ public class NegocioTreino implements InterfaceTreino {
     }
 
     @Override
-    public Treino buscarTreinoId(long idTreino) throws TreinoInexistenteException {
+    public ListarTreino buscarTreinoId(long idTreino) throws TreinoInexistenteException {
+        Treino treino = repositorioTreino.findByIdTreino(idTreino);
+        if (treino == null) {
+            throw new TreinoInexistenteException();
+        }
+        return new ListarTreino(treino);
+    }
+
+    private Treino buscarTreino(long idTreino) throws TreinoInexistenteException {
         Treino treino = repositorioTreino.findByIdTreino(idTreino);
         if (treino == null) {
             throw new TreinoInexistenteException();
         }
         return treino;
     }
-
+    
     @Transactional(rollbackFor = TreinoInexistenteException.class)
     @Override
     public void atualizarTreino(Treino treino) throws TreinoInexistenteException {
-        Treino antigo = buscarTreinoId(treino.getIdTreino());
+        Treino antigo = buscarTreino(treino.getIdTreino());
         antigo.setNomeTreino(treino.getNomeTreino());
         antigo.setDataExpiracao(treino.getDataExpiracao());
+        //antigo.setExercicios(treino.getExercicios());
         repositorioTreino.save(antigo);
     }
 
     @Transactional(rollbackFor = TreinoInexistenteException.class)
     @Override
     public void removerTreino(long idTreino) throws TreinoInexistenteException {
-        repositorioTreino.delete(buscarTreinoId(idTreino));
+        repositorioTreino.delete(buscarTreino(idTreino));
     }
 
     @Override

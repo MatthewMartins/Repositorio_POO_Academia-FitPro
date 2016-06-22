@@ -13,7 +13,7 @@ public class ListarTreino {
     private String dataExpiracao; //perguntar sobre anotação @temporal
     private String nomeAluno;
     //private Funcionario funcionario;
-    private List<Exercicio> exercicios;
+    private List<ListarExercicio> exercicios;
 
     //construtor para listar e buscar treinos
     public ListarTreino(Treino treino) {
@@ -21,14 +21,18 @@ public class ListarTreino {
         this.nomeTreino = treino.getNomeTreino();
         this.dataExpiracao = treino.getDataExpiracao();
         this.nomeAluno = treino.getAluno().getNome();
-        
+        this.exercicios = new ArrayList<ListarExercicio>();
+        for(int i = 0; i< treino.getExercicios().size(); i++){
+            ListarExercicio listaExercicioDesseTreino = new ListarExercicio(treino.getExercicios().get(i));
+            this.exercicios.add(listaExercicioDesseTreino);
+        }
     }
 
     public ListarTreino() {
-        this.exercicios = new ArrayList<Exercicio>();
+        this.exercicios = new ArrayList<ListarExercicio>();
     }
 
-    public ListarTreino(long idTreino, String nomeTreino, String dataExpiracao, String nomeAluno, List<Exercicio> exercicios) {
+    public ListarTreino(long idTreino, String nomeTreino, String dataExpiracao, String nomeAluno, List<ListarExercicio> exercicios) {
         this.idTreino = idTreino;
         this.nomeTreino = nomeTreino;
         this.dataExpiracao = dataExpiracao;
@@ -68,11 +72,11 @@ public class ListarTreino {
         this.nomeAluno = nomeAluno;
     }
 
-    public List<Exercicio> getExercicios() {
+    public List<ListarExercicio> getExercicios() {
         return exercicios;
     }
 
-    public void setExercicios(List<Exercicio> exercicios) {
+    public void setExercicios(List<ListarExercicio> exercicios) {
         this.exercicios = exercicios;
     }
 

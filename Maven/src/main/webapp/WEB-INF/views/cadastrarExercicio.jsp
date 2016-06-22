@@ -14,6 +14,7 @@
     <body>
         <h1>Cadastrar Exercicio</h1>
         <form action= "exercicio/adicionar" method="post">
+            <div> Id do Treino <input type="text" name="idTreino"> </div> </br>
             <div> Nome <input type="text" name="nomeExercicio"> </div> 
             <div> Id <input type="text" name="idExercicio"> </div> 
             <div> Descricao <input type="text" name="descricao"> </div>

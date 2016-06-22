@@ -28,7 +28,15 @@ public class NegocioAluno implements InterfaceAluno {
     }
 
     @Override
-    public Aluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException {
+    public ListarAluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException {
+        Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
+        if (aluno == null) {
+            throw new AlunoInexistenteException();
+        }
+        return new ListarAluno(aluno);
+    }
+    
+    private Aluno buscarId(long numMatricula) throws AlunoInexistenteException {
         Aluno aluno = repositorioAluno.findByNumMatricula(numMatricula);
         if (aluno == null) {
             throw new AlunoInexistenteException();
@@ -39,7 +47,7 @@ public class NegocioAluno implements InterfaceAluno {
     @Transactional(rollbackFor = AlunoInexistenteException.class)
     @Override
     public void atualizarAluno(Aluno aluno) throws AlunoInexistenteException {
-        Aluno antigo = buscarIdAluno(aluno.getNumMatricula());
+        Aluno antigo = buscarId(aluno.getNumMatricula());
         antigo.setAvaliacaoAlunos(aluno.getAvaliacaoAlunos());
         antigo.setBairro(aluno.getBairro());
         antigo.setCidade(aluno.getCidade());
@@ -55,7 +63,7 @@ public class NegocioAluno implements InterfaceAluno {
     @Transactional(rollbackFor = AlunoInexistenteException.class)
     @Override
     public void removerAluno(long numMatricula) throws AlunoInexistenteException {
-        repositorioAluno.delete(buscarIdAluno(numMatricula));
+        repositorioAluno.delete(buscarId(numMatricula));
     }
 
     @Override

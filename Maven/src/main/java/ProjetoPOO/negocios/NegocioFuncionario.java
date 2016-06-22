@@ -46,7 +46,7 @@ public class NegocioFuncionario implements InterfaceFuncionario {
         antigo.setRuaFun(funcionario.getTelefoneFun());
         antigo.setBairroFun(funcionario.getBairroFun());
         antigo.setCidadeFun(funcionario.getCidadeFun());
-        antigo.setNivelAcesso(funcionario.getNivelAcesso());
+        //antigo.setNivelAcesso(funcionario.getNivelAcesso());
         antigo.setSenhaFun(funcionario.getSenhaFun());
         repositorioFuncionario.save(antigo);
     }

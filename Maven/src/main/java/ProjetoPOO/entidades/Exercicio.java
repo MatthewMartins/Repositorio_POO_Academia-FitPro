@@ -19,20 +19,20 @@ public class Exercicio implements Serializable {
     private int qtSeries;
     private int numRepeticao;
     private int tempoDescanso;
-    //private Treino treino;
+    private Treino treino;
   
     public Exercicio() {
         //this.treino = treino;
     }
 
-    public Exercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso/*, Treino treino*/) {
+    public Exercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso, Treino treino) {
         this.nomeExercicio = nomeExercicio;
         this.idExercicio = idExercicio;
         this.descricao = descricao;
         this.qtSeries = qtSeries;
         this.numRepeticao = numRepeticao;
         this.tempoDescanso = tempoDescanso;
-        //this.treino = treino;
+        this.treino = treino;
     }
     
     @Id
@@ -102,4 +102,13 @@ public class Exercicio implements Serializable {
         this.treino = treino;
     }
    */
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Treino getTreino() {
+        return treino;
+    }
+
+    public void setTreino(Treino treino) {
+        this.treino = treino;
+    }
 }

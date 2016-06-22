@@ -15,5 +15,5 @@ public interface InterfaceTreino {
 
     public List<ListarTreino> listarTreinos();
 
-    public Treino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
+    public ListarTreino buscarTreinoId(long idTreino) throws TreinoInexistenteException;
 }

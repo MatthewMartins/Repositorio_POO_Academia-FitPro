@@ -1,5 +1,7 @@
 package ProjetoPOO.listar;
 
+import ProjetoPOO.entidades.Exercicio;
+
 public class ListarExercicio {
 
     private String nomeExercicio;
@@ -8,12 +10,23 @@ public class ListarExercicio {
     private int qtSeries;
     private int numRepeticao;
     private int tempoDescanso;
+    private String nomeTreino;
 
-    public ListarExercicio() {
-        
+    public ListarExercicio(Exercicio exercicio) {
+       this.nomeExercicio = exercicio.getNomeExercicio();
+       this.idExercicio = exercicio.getIdExercicio();
+       this.descricao = exercicio.getDescricao();
+       this.qtSeries = exercicio.getQtSeries();
+       this.numRepeticao = exercicio.getNumRepeticao();
+       this.tempoDescanso = exercicio.getTempoDescanso();
+       this.nomeTreino = exercicio.getTreino().getNomeTreino();
     }
 
-    public ListarExercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso) {
+    public ListarExercicio() {
+    }
+
+    
+    public ListarExercicio(String nomeExercicio, long idExercicio, String descricao, int qtSeries, int numRepeticao, int tempoDescanso, String nomeTreino) {
        
         this.nomeExercicio = nomeExercicio;
         this.idExercicio = idExercicio;
@@ -21,6 +34,7 @@ public class ListarExercicio {
         this.qtSeries = qtSeries;
         this.numRepeticao = numRepeticao;
         this.tempoDescanso = tempoDescanso;
+        this.nomeTreino = nomeTreino;
     }
 
     public String getNomeExercicio() {
@@ -71,4 +85,11 @@ public class ListarExercicio {
         this.tempoDescanso = tempoDescanso;
     }
     
+    public String getTreino() {
+        return nomeTreino;
+    }
+
+    public void setTreino(String nomeAluno) {
+        this.nomeTreino = nomeAluno;
+    }
 }

@@ -14,6 +14,6 @@ public interface InterfaceAvaliacao {
 
     public List<ListarAvaliacao> listarAvaliacoes();
 
-    public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
+    public ListarAvaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException;
 
 }

@@ -39,7 +39,15 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
     }
 
     @Override
-    public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
+    public ListarAvaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
+        Avaliacao avaliacao = repositorioAvaliacao.findByIdAvaliacao(idAvaliacao);
+        if (avaliacao == null) {
+            throw new AvaliacaoInexistenteException();
+        }
+        return new ListarAvaliacao(avaliacao);
+    }
+    
+    private Avaliacao buscarId(long idAvaliacao) throws AvaliacaoInexistenteException {
         Avaliacao avaliacao = repositorioAvaliacao.findByIdAvaliacao(idAvaliacao);
         if (avaliacao == null) {
             throw new AvaliacaoInexistenteException();
@@ -50,7 +58,7 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
     @Transactional(rollbackFor = AvaliacaoInexistenteException.class)
     @Override
     public void atualizarAvaliacao(Avaliacao avaliacao) throws AvaliacaoInexistenteException {
-        Avaliacao antiga = buscarIdAvaliacao(avaliacao.getIdAvaliacao());
+        Avaliacao antiga = buscarId(avaliacao.getIdAvaliacao());
         antiga.setPeso(avaliacao.getPeso());
         antiga.setAltura(avaliacao.getAltura());
         antiga.setPeito(avaliacao.getPeito());
@@ -68,7 +76,7 @@ public class NegocioAvaliacao implements InterfaceAvaliacao {
     @Transactional(rollbackFor = AvaliacaoInexistenteException.class)
     @Override
     public void removerAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
-        repositorioAvaliacao.delete(buscarIdAvaliacao(idAvaliacao));
+        repositorioAvaliacao.delete(buscarId(idAvaliacao));
     }
 
     @Override

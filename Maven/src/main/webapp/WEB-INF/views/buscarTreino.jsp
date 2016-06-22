@@ -13,5 +13,13 @@
     </head>
     <body>
         <h1>Buscar Treino</h1>
+        
+        <form action="treino/buscar" method="post">
+            
+            <div>Informe o ID do Treino<input type="text" name="idTreino"> </div>
+            
+            <input type="submit" value="Buscar">
+        
+        </form>
     </body>
 </html>

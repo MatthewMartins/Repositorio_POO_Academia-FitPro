@@ -3,6 +3,7 @@ package ProjetoPOO.entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -88,7 +89,7 @@ public class Treino implements Serializable {
         this.funcionario = funcionario;
     }
     */
-    @OneToMany(/*mappedBy = "treino",*/ fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "treino", fetch = FetchType.EAGER/*, cascade = CascadeType.ALL*/)
     public List<Exercicio> getExercicios() {
         return exercicios;
     }

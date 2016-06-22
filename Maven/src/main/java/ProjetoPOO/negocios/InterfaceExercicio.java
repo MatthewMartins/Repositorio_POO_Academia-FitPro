@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface InterfaceExercicio {
 
-    public void adicionarExercicio(Exercicio exercicio) throws ExercicioExistenteException;
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException;
 
     public void atualizarExercicio(Exercicio exercicio) throws ExercicioInexistenteException;
 
@@ -13,6 +13,6 @@ public interface InterfaceExercicio {
 
     public List<ListarExercicio> listarExercicios();
 
-    public Exercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
+    public ListarExercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException;
 
 }

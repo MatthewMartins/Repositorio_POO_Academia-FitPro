@@ -49,7 +49,7 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public Aluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException {
+    public ListarAluno buscarIdAluno(long numMatricula) throws AlunoInexistenteException {
 
         return this.alunos.buscarIdAluno(numMatricula);
     }
@@ -75,7 +75,7 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public Avaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
+    public ListarAvaliacao buscarIdAvaliacao(long idAvaliacao) throws AvaliacaoInexistenteException {
         return this.avaliacoes.buscarIdAvaliacao(idAvaliacao);
     }
 
@@ -125,13 +125,13 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public Treino buscarTreinoId(long idTreino) throws TreinoInexistenteException {
+    public ListarTreino buscarTreinoId(long idTreino) throws TreinoInexistenteException {
         return this.treinos.buscarTreinoId(idTreino);
     }
 
     @Override
-    public void adicionarExercicio(Exercicio exercicio) throws ExercicioExistenteException {
-        this.exercicios.adicionarExercicio(exercicio);
+    public void adicionarExercicio(long idTreino, Exercicio exercicio) throws ExercicioExistenteException {
+        this.exercicios.adicionarExercicio(idTreino, exercicio);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class FachadaImplementacao implements InterfaceFachada {
     }
 
     @Override
-    public Exercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException {
+    public ListarExercicio buscarExercicioId(long idExercicio) throws ExercicioInexistenteException {
         return this.exercicios.buscarExercicioId(idExercicio);
     }
 
