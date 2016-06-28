@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+//para conseguir enxergar o autowired, ou seja, a injeção de independencia
 public class Aluno implements Serializable {
 
     private long idBDAluno;

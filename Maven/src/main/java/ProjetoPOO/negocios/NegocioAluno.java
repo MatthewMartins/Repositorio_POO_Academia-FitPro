@@ -14,13 +14,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NegocioAluno implements InterfaceAluno {
-
+    //injeção de dependencia, busca as informações 
     @Autowired
     private RepositorioAluno repositorioAluno;
     
     @Autowired
     private RepositorioTreino repositorioTreino;
     
+    //ou vai tudo, ou nao vai nada
     @Transactional(rollbackFor = AlunoExistenteException.class)
     @Override
     public void adicionarAluno(Aluno aluno) throws AlunoExistenteException {
@@ -93,8 +94,7 @@ public class NegocioAluno implements InterfaceAluno {
             listarAluno.setListaTreinoAluno(aluno.get(i).getTreinoAlunos());
             
             listarAluno.setListaAvaliacaoAluno(aluno.get(i).getAvaliacaoAlunos());
-            retornaListaAlunos.add(listarAluno);
-            System.out.println("3");*/
+            retornaListaAlunos.add(listarAluno);*/
         }
 
         return retornaListaAlunos;

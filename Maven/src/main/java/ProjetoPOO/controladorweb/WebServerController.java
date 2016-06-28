@@ -10,9 +10,8 @@ import ProjetoPOO.listar.ListarAvaliacao;
 import ProjetoPOO.listar.ListarExercicio;
 import ProjetoPOO.listar.ListarFuncionario;
 import ProjetoPOO.listar.ListarTreino;
-import ProjetoPOO.negocios.AlunoInexistenteException;
 import ProjetoPOO.negocios.InterfaceFachada;
-import ProjetoPOO.persistencias.RepositorioTreino;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+//controlador funcionando para Javascript e HTML, apenas HTML tirar as anotações @RequestBody....
 //usar anotação @Controller para poder usar os formularios
 @Controller
 //@RestController
@@ -39,10 +38,12 @@ public class WebServerController {
     public @ResponseBody List<ListarAluno> listarAlunos() {
         return this.fachada.listarAlunos();
     }
-
-    //o @requestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
+    
+    //@RequestBody é as informações que vc esta mandando, as requisições que vem do fron
+    //@ResponseBody é a resposta que o metodo vai trazer
+    //o @RequestMapping recebe um atributo chamado value que indica qual será a URL utilizada para chamar o método.
     @RequestMapping("aluno/adicionar")
-    public @ResponseBody ResponseEntity<?> adicionarAluno(/*@RequestBody*/ Aluno aluno) {
+    public @ResponseBody ResponseEntity<?> adicionarAluno(@RequestBody Aluno aluno) {
         try {
           
             this.fachada.adicionarAluno(aluno);
@@ -52,8 +53,8 @@ public class WebServerController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    @RequestMapping("aluno/atualizar"/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
-    public @ResponseBody ResponseEntity<?> atualizarAluno(/*@RequestBody*/ Aluno aluno) {
+    @RequestMapping("aluno/atualizar")
+    public @ResponseBody ResponseEntity<?> atualizarAluno(@RequestBody Aluno aluno) {
 
         try {
             this.fachada.atualizarAluno(aluno);
@@ -64,20 +65,23 @@ public class WebServerController {
 
     }
 
-    @RequestMapping("aluno/buscar")
-    public @ResponseBody /*Aluno*/ResponseEntity<?> buscarAlunoID(long numMatricula) {
+    @RequestMapping(value = "aluno/buscar", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public ResponseEntity<?> buscarAlunoID(long numMatricula) {
 
         try {
             //return this.fachada.buscarIdAluno(numMatricula);
             ListarAluno aluno = this.fachada.buscarIdAluno(numMatricula);
-            return new ResponseEntity<ListarAluno>(aluno, HttpStatus.OK);
+            //No front precisou eu transformar o aluno em uma lista, para poder ele jogar na tabela
+            List<ListarAluno> retornaListaAluno = new ArrayList<ListarAluno>();
+            retornaListaAluno.add(aluno);
+            return new ResponseEntity<List<ListarAluno>>(retornaListaAluno, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
 
     }
     
-    @RequestMapping("aluno/historicoTreino")
+    @RequestMapping(value = "aluno/historicoTreino",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public ResponseEntity<?> historicoTreinosAluno(long numMatricula){
         try {
             List<ListarTreino> historico = this.fachada.historicoTreinosAluno(numMatricula);
@@ -87,7 +91,7 @@ public class WebServerController {
         }
     }
     
-    @RequestMapping("aluno/historicoAvaliacao")
+    @RequestMapping(value = "aluno/historicoAvaliacao",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public ResponseEntity<?> historicoAvaliacoesAluno(long numMatricula){
         try {
             List<ListarAvaliacao> historicoAvaliacao = this.fachada.historicoAvaliacoesAluno(numMatricula);
@@ -98,7 +102,7 @@ public class WebServerController {
     }
 
     @RequestMapping("aluno/remover")
-    public /*@ResponseBody*/ResponseEntity<?> removerAluno(long numMatricula) {
+    public @ResponseBody ResponseEntity<?> removerAluno(long numMatricula) {
 
         try {
             this.fachada.removerAluno(numMatricula);
@@ -108,9 +112,11 @@ public class WebServerController {
         return new ResponseEntity<String>(HttpStatus.OK);
 
     }
+    
+     //    -----------    CONTROLADOR AVALIACAO    ----------------------------
 
     @RequestMapping("avaliacao/adicionar")
-    public @ResponseBody ResponseEntity<?> adicionarAvaliacao(/*@RequestBody*/ Avaliacao avaliacao, long numMatricula) {
+    public @ResponseBody ResponseEntity<?> adicionarAvaliacao(@RequestBody Avaliacao avaliacao, long numMatricula) {
 
         try {
             this.fachada.adicionarAvaliacao(avaliacao, numMatricula);
@@ -122,7 +128,7 @@ public class WebServerController {
     }
 
     @RequestMapping("avaliacao/atualizar")
-    public ResponseEntity<?> atualizarAvaliacao(/*@RequestBody*/ Avaliacao avaliacao) {
+    public ResponseEntity<?> atualizarAvaliacao(@RequestBody Avaliacao avaliacao) {
 
         try {
             this.fachada.atualizarAvaliacao(avaliacao);
@@ -151,20 +157,24 @@ public class WebServerController {
         return this.fachada.listarAvaliacoes();
     }
 
-    @RequestMapping("avaliacao/buscar")
+    @RequestMapping(value = "avaliacao/buscar", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public ResponseEntity<?> buscarAvaliacaoID(long idAvaliacao) {
 
         try {
             ListarAvaliacao avaliacao = this.fachada.buscarIdAvaliacao(idAvaliacao);
-            return new ResponseEntity<ListarAvaliacao>(avaliacao, HttpStatus.OK);
+            List<ListarAvaliacao> retornaListaAvaliacao = new ArrayList<ListarAvaliacao>();
+            retornaListaAvaliacao.add(avaliacao);
+            return new ResponseEntity<List<ListarAvaliacao>>(retornaListaAvaliacao, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
 
     }
+    
+     //    -----------    CONTROLADOR FUNCIONARIO    ----------------------------
 
     @RequestMapping("funcionario/adicionar")
-    public ResponseEntity<?> adicionarFuncionario(Funcionario funcionario) {
+    public ResponseEntity<?> adicionarFuncionario(@RequestBody Funcionario funcionario) {
 
         try {
             this.fachada.adicionarFuncionario(funcionario);
@@ -176,7 +186,7 @@ public class WebServerController {
     }
 
     @RequestMapping("funcionario/atualizar")
-    public ResponseEntity<?> atualizarFuncionario(Funcionario funcionario) {
+    public ResponseEntity<?> atualizarFuncionario( @RequestBody Funcionario funcionario) {
 
         try {
             this.fachada.atualizarFuncionario(funcionario);
@@ -199,7 +209,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "funcionario/listar", method = RequestMethod.GET/*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @RequestMapping(value = "funcionario/listar", method = RequestMethod.GET)
     public @ResponseBody  List<ListarFuncionario> listarFuncionarios() {
         return this.fachada.listarFuncionarios();
     }
@@ -215,9 +225,11 @@ public class WebServerController {
         }
 
     }
+    
+    //    -----------    CONTROLADOR TREINO    ----------------------------
 
     @RequestMapping("treino/adicionar")
-    public @ResponseBody ResponseEntity<?> adicionarTreino(/*@RequestBody*/ Treino treino, long numMatricula) {
+    public @ResponseBody ResponseEntity<?> adicionarTreino( @RequestBody Treino treino, long numMatricula) {
         
         try {
             this.fachada.adicionarTreino(treino, numMatricula);
@@ -229,7 +241,7 @@ public class WebServerController {
     }
 
     @RequestMapping("treino/atualizar")
-    public ResponseEntity<?> atualizarTreino(Treino treino) {
+    public ResponseEntity<?> atualizarTreino(@RequestBody Treino treino) {
 
         try {
             this.fachada.atualizarTreino(treino);
@@ -257,12 +269,14 @@ public class WebServerController {
         return this.fachada.listarTreinos();
     }
 
-    @RequestMapping("treino/buscar")
+    @RequestMapping(value = "treino/buscar",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public ResponseEntity<?> buscarTreinoId(long idTreino) {
 
         try {
             ListarTreino treino = this.fachada.buscarTreinoId(idTreino);
-            return new ResponseEntity<ListarTreino>(treino, HttpStatus.OK);
+            List<ListarTreino> retornaListaTreino = new ArrayList<ListarTreino>();
+            retornaListaTreino.add(treino);
+            return new ResponseEntity<List<ListarTreino>>(retornaListaTreino, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
         }
@@ -270,7 +284,7 @@ public class WebServerController {
     }
     
     @RequestMapping("exercicio/adicionar")
-    public ResponseEntity<?> adicionarExercicio(long idTreino, Exercicio exercicio) {
+    public ResponseEntity<?> adicionarExercicio(long idTreino, @RequestBody  Exercicio exercicio) {
 
         try {
             this.fachada.adicionarExercicio(idTreino, exercicio);
@@ -283,7 +297,7 @@ public class WebServerController {
     }
 
     @RequestMapping("exercicio/atualizar")
-    public ResponseEntity<?> atualizarExercicio(/*@RequestBody*/ Exercicio exercicio) {
+    public ResponseEntity<?> atualizarExercicio(@RequestBody Exercicio exercicio) {
 
         try {
             this.fachada.atualizarExercicio(exercicio);
@@ -306,7 +320,7 @@ public class WebServerController {
 
     }
 
-    @RequestMapping(value = "exercicio/listar", method = RequestMethod.GET /*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @RequestMapping(value = "exercicio/listar", method = RequestMethod.GET)
     public @ResponseBody List<ListarExercicio> listarExercicios() {
         return this.fachada.listarExercicios();
     }
